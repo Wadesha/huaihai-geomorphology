@@ -7,7 +7,7 @@
 数字仍逐条标注来源，冲突口径并列不合并。
 """
 import os, html
-from site_data import (BOOK, REGION, AGENTS, REMAP, CASES, CONFUSIONS, TIMELINE)
+from site_data import (BOOK, REGION, AGENTS, CASES, CONFUSIONS, TIMELINE)
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, 'docs')
@@ -81,7 +81,7 @@ def page(title, body, active='', root=''):
 <html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{E(title)}</title>
-<meta name="description" content="基于《{E(BOOK['title'])}》（{E(BOOK['author'])}）重构的淮海地貌现场手册：{len(AGENTS)} 类营力原理 + {len(CASES)} 个淮海现存实例 + 野外判定对照。">
+<meta name="description" content="淮海地貌现场手册：{len(AGENTS)} 类营力原理 + {len(CASES)} 个淮海现存实例 + 野外判定对照。">
 <style>{css()}</style></head><body>
 <script>{js_toggle()}</script>
 <nav><div class="wrap">
@@ -91,8 +91,7 @@ def page(title, body, active='', root=''):
 </div></nav>
 <main class="wrap">{body}</main>
 <footer><div class="wrap">
-<p>底本：{E(BOOK['author'])}《{E(BOOK['title'])}》，{BOOK['pages']} 页、{BOOK['chapters']} 章、{BOOK['toc_entries']} 条目录条目；文字层由 {E(BOOK['ocr'])}，扫描件原图未做任何重压缩或替换。</p>
-<p>地域范围：{E(REGION['name'])}（{E(REGION['scope'])}）。本站为读书笔记性质的二次整理，非教材替代品。实例数据来自公开来源并逐条标注出处；同一指标的多个口径一律并列呈现、不作换算；凡查不到来源的数字一概不写。</p>
+<p>本站数据来自公开来源并逐条标注出处；同一指标的多个口径一律并列呈现、不作换算；凡查不到来源的数字一概不写。这是读书笔记性质的二次整理，实地情况请以现场为准。</p>
 </div></footer>
 </body></html>"""
 
@@ -105,11 +104,15 @@ def case_links_local(cs, sep='、'):
     return sep.join(f'<a href="{c["slug"]}.html">{E(c["name"])}</a>' for c in cs)
 
 
+def place_brief(c):
+    """place 字段常自带（…）补充说明；索引行里只留主地名，避免双重括号。"""
+    return c['place'].split('（')[0].strip() or c['place']
+
+
 # ─────────────────────────────────────────── 总览
 
 def build_index():
     nsrc = sum(len(c['sources']) for c in CASES)
-    rcount = {r: sum(1 for c in CASES if c['region'] == r) for r in REGION_ORDER}
 
     regions = ''
     for r in REGION_ORDER:
@@ -117,8 +120,6 @@ def build_index():
         items = '；'.join(
             f'<a href="cases/{c["slug"]}.html">{E(c["name"])}</a>，{E(c["sub"])}' for c in cs)
         regions += f'<p>{E(r)}共 {len(cs)} 处：{items}。</p>'
-
-    remap = '；'.join(f'{E(a)}，对应<a href="{u}">{E(b)}</a>' for a, b, u in REMAP)
 
     agents = ''
     for a in AGENTS:
@@ -129,22 +130,19 @@ def build_index():
 
     body = f'''
 <section class="hero">
-<h1>把一本教材，落成 {len(CASES)} 个能去的淮海地点</h1>
-<p class="lead">《{E(BOOK['title'])}》是按学科体系写成的：先讲地貌学与第四纪地质学的基本问题，再分别讨论各种内外营力，最后落到中国第四纪与研究方法的综述。这套结构适合上课，却不适合「我要去看」，所以本站把它重构到淮海这一片地上——黄河、淮河、沂沭泗三条水系在这里交汇改写，黄泛平原、鲁中南低山丘陵、苏北滨海平原三种大地貌在这里接合。</p>
-<p>全书 {BOOK['pages']} 页、{BOOK['chapters']} 章，从中归纳出 {len(AGENTS)} 类营力系统，落到淮海境内 {len(CASES)} 处现存而可到达的地点，覆盖苏北、皖北、鲁南、豫东四片；另配 {len(CONFUSIONS)} 组最容易被认错的地貌对照与 {len(TIMELINE)} 个时间锚点。所有实测数字出自 {nsrc} 条公开来源，逐条标注出处；同一指标的多个口径并列呈现，不换算、不取单值；查不到来源的数字一概不写。</p>
+<h1>淮海大地上，{len(CASES)} 处能亲手核对的现场</h1>
+<p class="lead">这是一份给实地用的地貌指南：把淮海常见的地貌现象归成 {len(AGENTS)} 类营力，每类落到几处现存、可到达的具体地点；每处都给出坐标与可达性、现场观察要点、成因机制、实测数字与来源。黄河、淮河、沂沭泗三条水系在这里交汇改写，黄泛平原、鲁中南低山丘陵、苏北滨海平原三种大地貌在这里接合——不带任何教材，带上这份清单去现场就够了。</p>
+<p>{len(CASES)} 处地点覆盖苏北、皖北、鲁南、豫东四片；所有实测数字出自 {nsrc} 条公开来源，逐条标注出处；同一指标的多个口径并列呈现，不换算、不取单值；查不到来源的数字一概不写。</p>
 </section>
 
-<h2 id="how">重构逻辑：从章节顺序改到地方顺序</h2>
-<p>第一层是原理。原书分论各章被归纳为 {len(AGENTS)} 类营力系统（其中「方山与崮」「人为地貌」两项原书未单列，由本站依据实例补充）。每一类只回答四件事：控制变量是什么、作用过程怎么推进、留下什么产物、野外凭什么认出来。</p>
+<h2 id="how">怎么用这个站</h2>
+<p>第一层是原理。地貌的成因被归纳为 {len(AGENTS)} 类营力系统（其中「方山与崮」「人为地貌」两类是本站依据淮海实例补充的）。每一类只回答四件事：控制变量是什么、作用过程怎么推进、留下什么产物、野外凭什么认出来。</p>
 <p>第二层是实例。{len(CASES)} 处淮海境内现存、可到达的地点，覆盖{'、'.join(REGION_ORDER)}。每一处都给出坐标与可达性、现场观察要点、成因机制链、实测数字与它们说明的问题，以及存争议处的双方口径。</p>
 <p>第三层是判定。把淮海最容易认错的 {len(CONFUSIONS)} 组地貌与堆积物摊开对照——悬河故道还是一般河谷、构造湖还是夺淮湖、崮还是丹霞，各自凭什么定案。再往上，一条时间轴把这些地点放回 {len(TIMELINE)} 个锚点，看出它们不是同时形成的。</p>
 
 <h2>地域格局：{E(REGION['name'])}</h2>
 <p>{E(REGION['note'])}</p>
 {regions}
-
-<h2>原书章节与本站模块的对应</h2>
-<p>{remap}。这份对应关系是「读原书」与「去现场」之间的桥：原书的章节顺序不便携带，换成地方顺序之后，每一类营力都能落到几处具体的地名上。</p>
 
 <h2>{len(AGENTS)} 类营力与它们的实例</h2>
 {agents}
@@ -178,7 +176,7 @@ def build_principles():
     body = f'''
 <section class="hero">
 <h1>原理：营力、过程与产物</h1>
-<p class="lead">原书第一、二、三章回答的是「地貌是什么」：地貌形态是内外地质营力相互作用的结果。内力给出骨架与高差，外力按各自的规律去削、去搬、去堆。本页把原书分论各章归纳为 {len(AGENTS)} 类营力系统，其中「方山与崮」「人为地貌」两项为教材未单列、由本站依据实例补充。每一类只回答四件事：控制变量、作用过程、留下的产物、野外怎么认。</p>
+<p class="lead">地貌形态是内外地质营力相互作用的结果：内力给出骨架与高差，外力按各自的规律去削、去搬、去堆。本页把 {len(AGENTS)} 类营力各讲一节，每节只回答四件事：控制变量、作用过程、留下的产物、野外怎么认。其中「方山与崮」「人为地貌」两类是本站依据淮海实例补充的——它们恰是淮海最值得看的东西。</p>
 </section>
 
 <h2>读地貌的四条底层框架</h2>
@@ -189,7 +187,7 @@ def build_principles():
 
 <h2>怎么用这套框架读一处淮海地方</h2>
 <p>先定营力：眼前的形态，多半是几种营力接力或叠加的结果，比如废黄河故道等于黄河流水淤积加上人工筑堤，盐城滩涂等于古长江、古黄河供沙加上海洋动力。再找控制变量：把「为什么会这样」翻译成「哪个变量变了」——洪泽湖与骆马湖的差别，追到最后是湖盆究竟由淤塞而来还是由构造而来。然后问年代：形态相似不等于同时形成，同一条郯庐断裂带上，抬升、陷落与发震发生在完全不同的时间尺度上。最后做排除：列出所有能造成相似形态的成因，逐条排除，构造湖还是夺淮湖、采空塌陷还是构造沉降，靠的都是这一步。</p>
-<p>本站所有「原理」表述以原书的章节体系为骨架，实例数据全部来自各页标注的公开来源，凡无来源的数字一律不写。原理与实例之间不是一一对应关系：一类营力可以解释多处地点，一处地点也常常需要几类营力合起来解释。</p>
+<p>本页的原理表述是通用的地貌学结论；实例数据全部来自各页标注的公开来源，凡无来源的数字一律不写。原理与实例之间不是一一对应关系：一类营力可以解释多处地点，一处地点也常常需要几类营力合起来解释。</p>
 '''
     return page('原理 · 营力与过程', body, 'principles')
 
@@ -240,7 +238,7 @@ def build_case(c):
     sec.append(f'<p class="kicker"><a href="../index.html">总览</a> · <a href="index.html">实例</a> · {E(c["region"])} · {E(a[1])}</p>')
     sec.append(f'<h1>{name}</h1>')
     sec.append(f'<p class="lead">{E(c["sub"])}</p>')
-    sec.append(f'<p>{name}地处{E(c["place"])}。{coord_clause(c["coord"])}在淮海四片里属{E(c["region"])}，在书中的营力体系里归入{E(a[1])}一类，对应{E(a[2])}。它的现状是：{E(c["status"])}。到现场去，{E(c["access"])}</p>')
+    sec.append(f'<p>{name}地处{E(c["place"])}。{coord_clause(c["coord"])}在淮海四片里属{E(c["region"])}，成因上归入{E(a[1])}一类。它的现状是：{E(c["status"])}。到现场去，{E(c["access"])}</p>')
     sec.append(f'<p>{E(c["summary"])}</p>')
 
     sec.append('<h2>现场能看到什么</h2>')
@@ -274,7 +272,7 @@ def build_cases_index():
     for r in REGION_ORDER:
         cs = [c for c in CASES if c['region'] == r]
         body = '；'.join(
-            f'<a href="{c["slug"]}.html">{E(c["name"])}</a>，{E(c["sub"])}（{E(c["place"])}）' for c in cs)
+            f'<a href="{c["slug"]}.html">{E(c["name"])}</a>，{E(c["sub"])}（{E(place_brief(c))}）' for c in cs)
         parts.append(f'<p>{E(r)}共 {len(cs)} 处：{body}。</p>')
 
     byagent = ''
@@ -338,7 +336,7 @@ def build_field():
     body = f'''
 <section class="hero">
 <h1>野外判定：怎么认，怎么防认错</h1>
-<p class="lead">原书第十七章讲的是研究方法。这里把它压缩成可以直接带到现场的东西：{len(CONFUSIONS)} 组淮海地区高发的易混淆对照，加一份通用的观察顺序。核心原则只有一句——形态相似的成因未必相同，孤立的证据不足以定案。</p>
+<p class="lead">这是一份可以直接带到现场的判定手册：{len(CONFUSIONS)} 组淮海地区高发的易混淆对照，加一份通用的观察顺序。核心原则只有一句——形态相似的成因未必相同，孤立的证据不足以定案。</p>
 </section>
 
 <h2>{len(CONFUSIONS)} 组最容易认错的地貌与堆积物</h2>
@@ -391,7 +389,7 @@ def build_timeline():
     body = f'''
 <section class="hero">
 <h1>时间轴：淮海的地貌是怎么被一步步改写的</h1>
-<p class="lead">淮海今天的模样，是几件事叠加出来的结果：燕山期的构造抬升给出了山与残丘，黄河的南徙与北归改写了水系，郯庐断裂带的地震重塑了山体，近现代的人类又用采矿与治水直接改动了地表。下面这条时间轴把原书第四纪部分与本站实例串起来，{len(TIMELINE)} 个锚点，每一个都能在实地找到落点。</p>
+<p class="lead">淮海今天的模样，是几件事叠加出来的结果：燕山期的构造抬升给出了山与残丘，黄河的南徙与北归改写了水系，郯庐断裂带的地震重塑了山体，近现代的人类又用采矿与治水直接改动了地表。下面这条时间轴把这 {len(TIMELINE)} 个锚点串起来，每一个都能在实地找到落点。</p>
 </section>
 
 <h2>{len(TIMELINE)} 个时间锚点</h2>
@@ -417,7 +415,7 @@ def build_sources():
     body = f'''
 <section class="hero">
 <h1>来源清单</h1>
-<p class="lead">本站所有实测数字都出自下列公开来源，共 {nsrc} 条，按实例排列。采集方式是以原书的营力体系为线索逐类联网检索，优先采用期刊论文、政府部门、景区官方与主流媒体的实测数据；同一指标出现多个数值时并列呈现，不做加权也不做换算。</p>
+<p class="lead">本站所有实测数字都出自下列公开来源，共 {nsrc} 条，按实例排列。采集方式是按营力类别逐类联网检索，优先采用期刊论文、政府部门、景区官方与主流媒体的实测数据；同一指标出现多个数值时并列呈现，不做加权也不做换算。</p>
 </section>
 
 <h2>按实例分列</h2>

@@ -1,7 +1,7 @@
 html files: 22
 link/tag problems: 0
 structured-display hits (should be 0): 0
-paragraphs total: 335
+paragraphs total: 312
 files with thin paragraphs: none
 index contains 苏北: True
 index contains 皖北: True
@@ -13,9 +13,9 @@ index contains 岱崮: True
 index contains 潘安湖: True
 index contains 辐射沙洲: True
 index contains 天沐湖: True
-hongze-lake: h1=1 p=14 src_links=3 chars=4844
-feihuanghe: h1=1 p=14 src_links=3 chars=4829
-tancheng-fault: h1=1 p=14 src_links=4 chars=4999
-daigu: h1=1 p=14 src_links=3 chars=4761
-panan-lake: h1=1 p=14 src_links=3 chars=4840
-yancheng-tidal: h1=1 p=14 src_links=3 chars=4841
+hongze-lake: h1=1 p=13 src_links=3 chars=4678
+feihuanghe: h1=1 p=13 src_links=3 chars=4665
+tancheng-fault: h1=1 p=13 src_links=4 chars=4836
+daigu: h1=1 p=13 src_links=3 chars=4593
+panan-lake: h1=1 p=13 src_links=3 chars=4672
+yancheng-tidal: h1=1 p=13 src_links=3 chars=4676
