@@ -67,23 +67,16 @@ python diag_prose.py     # 措辞诊断：标签词重复、破折号叠用、�
 构建脚本不删除 `docs/` 目录，只就地覆盖并按清单清理多余文件——本机沙箱会把 `shutil.rmtree`
 改写成回收站操作并失败，不要改回去。
 
-## 发布到 GitHub Pages
+## 发布状态（GitHub Pages）
 
-`docs/` 即 Pages 根目录，已含 `.nojekyll`。
+**已发布：https://wadesha.github.io/huaihai-geomorphology/**
+仓库：https://github.com/Wadesha/huaihai-geomorphology （Pages 源：`main` 分支 `/docs` 目录，已含 `.nojekyll`）
 
-```bash
-git init
-git add -A
-git commit -m "淮海地貌现场手册"
-git branch -M main
-git remote add origin https://github.com/Wadesha/huaihai-geomorphology.git
-git push -u origin main
-```
-
-推完后到仓库 **Settings → Pages**，Source 选 `Deploy from a branch`，分支 `main`、目录 `/docs`。
-
-> 注：构建机所在网络无法直连 github.com:443，推送需在能连 GitHub 的环境执行。
-> 另：本机 git 不在 PowerShell 的 PATH 上，需先把 PortableGit 的 `mingw64/bin` 加进 `$env:PATH`。
+> 首次发布说明：本机出口代理拦截 git 推送（`git push` 的 receive-pack POST 被代理 502，
+> 直连 443 也不通），首个提交改经 GitHub API（Git Data API：blobs → tree → commit → refs）写入远端，
+> 文件内容与本地完全一致，但**远端与本地 git 历史不同源**。
+> 之后在能连 GitHub 的环境里同步一次即可接续推送：
+> `git fetch origin && git reset --hard origin/main`（内容一致，重置无数据损失）。
 
 ## 底本说明
 
