@@ -1,7 +1,7 @@
 # 淮海地貌现场手册
 
-以杜恒俭 等《地貌学及第四纪地质学》为底本，把教材的营力体系**重构**为「原理层 → 实例层 → 判定层」，
-并把实例范围收在**淮海地区**（苏北 · 皖北 · 鲁南 · 豫东，淮海经济区核心）。
+一份可以直接带去实地的淮海地貌指南：把淮海常见的地貌现象按 **9 类营力** 归纳为「原理层 → 实例层 → 判定层」，
+实例全部落在**淮海地区现存、可到达的具体地点**（苏北 · 皖北 · 鲁南 · 豫东，淮海经济区核心）。
 
 同系列另有全国版：[../geomorphology-field-guide](../geomorphology-field-guide)。
 
@@ -16,7 +16,7 @@
 
 ## 站点结构
 
-总览页 `docs/index.html` 的职责是把三层讲清楚：重构逻辑、地域格局（按苏北、皖北、鲁南、豫东四片列出全部实例，实例名即链接）、原书章节与本站模块的对应关系，以及 9 类营力各自控制什么变量、留下什么产物、对应淮海哪些实例。
+总览页 `docs/index.html` 的职责是把三层讲清楚：使用方式、地域格局（按苏北、皖北、鲁南、豫东四片列出全部实例，实例名即链接），以及 9 类营力各自控制什么变量、留下什么产物、对应淮海哪些实例。
 
 原理页 `docs/principles.html` 先给四条底层框架——内力与外力、成因与形态与年代、规模等级与地域分带、时间是隐藏变量——再逐类展开 9 类营力系统，最后讲怎么用这套框架读一处具体地方。
 
@@ -26,7 +26,7 @@
 
 时间轴页 `docs/timeline.html` 把 13 个时间锚点按先后排开，每个锚点后接一句按营力分别措辞的短评，并说明年代口径的处理方式。
 
-来源页 `docs/sources.html` 把 44 条来源按实例分列，并交代底本与使用边界。
+来源页 `docs/sources.html` 把 44 条来源按实例分列，并交代数据口径与使用边界。
 
 ## 16 个实例（按分区）
 
@@ -61,7 +61,7 @@ python validate.py       # 标签闭合、内链、纯散文约束、关键内�
 python diag_prose.py     # 措辞诊断：标签词重复、破折号叠用、字段缺失；结果写 _diag_prose.txt
 ```
 
-`site_data.py` 是纯数据（`BOOK` / `REGION` / `AGENTS` / `REMAP` / `CASES` / `CONFUSIONS` / `TIMELINE`），
+`site_data.py` 是纯数据（`REGION` / `AGENTS` / `CASES` / `CONFUSIONS` / `TIMELINE`），
 `build_site.py` 是纯渲染。改内容只动 `site_data.py`。
 
 构建脚本不删除 `docs/` 目录，只就地覆盖并按清单清理多余文件——本机沙箱会把 `shutil.rmtree`
@@ -72,17 +72,13 @@ python diag_prose.py     # 措辞诊断：标签词重复、破折号叠用、�
 **已发布：https://wadesha.github.io/huaihai-geomorphology/**
 仓库：https://github.com/Wadesha/huaihai-geomorphology （Pages 源：`main` 分支 `/docs` 目录，已含 `.nojekyll`）
 
-> 首次发布说明：本机出口代理拦截 git 推送（`git push` 的 receive-pack POST 被代理 502，
-> 直连 443 也不通），首个提交改经 GitHub API（Git Data API：blobs → tree → commit → refs）写入远端，
+> 本机出口代理拦截 git 推送（`git push` 的 receive-pack POST 被代理 502，
+> 直连 443 也不通），发布改经 GitHub API（Git Data API：blobs → tree → commit → refs）写入远端，
 > 文件内容与本地完全一致，但**远端与本地 git 历史不同源**。
-> 之后在能连 GitHub 的环境里同步一次即可接续推送：
+> 在能连 GitHub 的环境里同步一次即可接续推送：
 > `git fetch origin && git reset --hard origin/main`（内容一致，重置无数据损失）。
 
-## 底本说明
+## 性质说明
 
-底本是杜恒俭 等《地貌学及第四纪地质学》，389 页、17 章、111 条目录条目。
-文字层由 RapidOCR 3.9.2 与 PP-OCRv6 small 以 200 dpi 识别，389 页全覆盖；
-扫描件原图未做任何重压缩、缩小或替换。原扫描件的书末参考文献页（书内第 374 页）本身仅存一页即截断，
-属原件缺页，非处理过程引入。
-
-本站为读书笔记性质的二次整理，非教材替代品。
+本站为读书笔记性质的二次整理，内容是通用地貌学结论 + 公开来源的实测数据，
+不替代任何教材或官方发布；实地情况请以现场为准。
