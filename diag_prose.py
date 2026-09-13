@@ -4,7 +4,7 @@
 """
 import os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from site_data import CASES, AGENTS, CONFUSIONS, REMAP
+from site_data import CASES, AGENTS, CONFUSIONS
 
 AG = {a[0]: a for a in AGENTS}
 flags = []
@@ -56,11 +56,7 @@ for a in AGENTS:
     if len(a) != 5:
         flags.append(f"[agent] {a[1]}：字段数为 {len(a)}，应为 5")
 
-for x in REMAP:
-    if len(x) != 3:
-        flags.append(f"[remap] {x[0]}：字段数 {len(x)}")
-
-out = [f'cases: {len(CASES)}  agents: {len(AGENTS)}  confusions: {len(CONFUSIONS)}  remap: {len(REMAP)}',
+out = [f'cases: {len(CASES)}  agents: {len(AGENTS)}  confusions: {len(CONFUSIONS)}',
        f'flags: {len(flags)}', ''] + flags
 open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '_diag_prose.txt'),
      'w', encoding='utf-8').write('\n'.join(out))

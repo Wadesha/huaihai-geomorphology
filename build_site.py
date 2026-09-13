@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 """淮海地貌现场手册 —— 静态站点生成器
 用法：python build_site.py   输出至 ./docs（GitHub Pages 目录）
-依据：杜恒俭等《地貌学及第四纪地质学》的营力体系，重构为淮海地区（苏北/皖北/鲁南/豫东）的现存实例。
+数据与渲染分离：本文件只负责把 site_data.py 渲染成 docs/ 下的静态站。
 
 版式原则：**全站不用表格、卡片、统计块、步骤条与侧栏**，所有内容以连续散文（大段文字）呈现。
 数字仍逐条标注来源，冲突口径并列不合并。
 """
 import os, html
-from site_data import (BOOK, REGION, AGENTS, CASES, CONFUSIONS, TIMELINE)
+from site_data import (REGION, AGENTS, CASES, CONFUSIONS, TIMELINE)
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, 'docs')
