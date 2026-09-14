@@ -67,6 +67,8 @@ nav{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px soli
 .cards.sub button{font-size:12.5px;padding:2px 8px;border-radius:6px}
 .view{display:none}
 .view.on{display:block}
+.casebody{display:none}
+.casebody.on{display:block}
 main{padding-bottom:10px}
 .hero{padding:16px 0 4px}
 h1{font-size:23px;line-height:1.3;margin:0 0 .3em;letter-spacing:.01em}
