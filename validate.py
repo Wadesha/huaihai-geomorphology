@@ -54,6 +54,40 @@ for f in files:
             struct += n
 out.append('structured-display hits (should be 0): %d' % struct)
 
+# ── 硬性禁令：图片、表格、emoji、搜索控件、md 加粗符号（**）
+EMOJI = re.compile(
+    '[\U0001F000-\U0001FAFF\U00002600-\U000027BF\U00002B00-\U00002BFF'
+    '\U0001F1E6-\U0001F1FF\U00002190-\U000021FF\U0000FE0F\U00002700-\U000027BF'
+    '\U000025A0-\U000025FF\U00002190\u2192\u2190\u2191\u2193]')
+hards = {'img': 0, 'table': 0, 'emoji': 0, 'search': 0, 'md': 0}
+for f in files:
+    t = open(f, encoding='utf-8').read()
+    for k in ('<img', '<picture', '<svg', '<canvas', '<video', '<audio', '<source'):
+        n = t.count(k)
+        if n:
+            out.append('IMAGE %s: %s ×%d' % (os.path.basename(f), k, n))
+            hards['img'] += n
+    for k in ('<table', '<tbody', '<thead', '<tr', '<td', '<th'):
+        n = t.count(k)
+        if n:
+            out.append('TABLE %s: %s ×%d' % (os.path.basename(f), k, n))
+            hards['table'] += n
+    em = EMOJI.findall(t)
+    if em:
+        out.append('EMOJI %s: %s ×%d' % (os.path.basename(f), ''.join(sorted(set(em)))[:20], len(em)))
+        hards['emoji'] += len(em)
+    for k in ('type="search"', '<search', 'input type', '搜索'):
+        n = t.count(k)
+        if n:
+            out.append('SEARCH %s: %s ×%d' % (os.path.basename(f), k, n))
+            hards['search'] += n
+    n = t.count('**')
+    if n:
+        out.append('MD-BOLD %s: ** ×%d' % (os.path.basename(f), n))
+        hards['md'] += n
+out.append('hard-ban hits img=%d table=%d emoji=%d search=%d md-bold=%d (all should be 0)'
+           % (hards['img'], hards['table'], hards['emoji'], hards['search'], hards['md']))
+
 # ── 标签式交互结构
 idx = open(os.path.join(DOCS, 'index.html'), encoding='utf-8').read()
 out.append('module cards: %d (should be 6)' % idx.count('data-v="'))
