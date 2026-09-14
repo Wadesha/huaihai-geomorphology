@@ -256,7 +256,7 @@ def case_inner(c):
     sec.append(f'<p>{name}地处{E(c["place"])}。{coord_clause(c["coord"])}在淮海四片里属{E(c["region"])}，塑造它的营力是{E(a[1])}。它的现状是：{E(c["status"])}。到现场去，{E(c["access"])}</p>')
     sec.append(f'<p>{E(c["summary"])}</p>')
 
-    sec.append('<h2>现场能看到什么</h2>')
+    sec.append('<h2>到哪看，看什么</h2>')
     sec.append(f'<p>{obs}</p>')
 
     sec.append('<h2>背后的原理</h2>')
