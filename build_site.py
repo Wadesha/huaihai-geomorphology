@@ -15,7 +15,7 @@ AGENT_D = {a[0]: a for a in AGENTS}
 REGION_ORDER = ['苏北', '皖北', '鲁南', '豫东']
 E = html.escape
 
-MODULES = [('home', '总览'), ('prins', '原理'), ('cases', '实例'),
+MODULES = [('cases', '实例'), ('prins', '原理'),
            ('field', '判定'), ('time', '时间轴'), ('srcs', '来源')]
 
 # 每处实例的卡片短名（顶排卡片空间有限，只放 2—4 字）
@@ -96,10 +96,10 @@ document.documentElement.setAttribute('data-theme',c);localStorage.setItem('hhgm
 var CASES=%s;
 function route(){
   var h=decodeURIComponent(location.hash.replace(/^#\\/?/,''));
-  var view='home',caso=null;
-  if(h.slice(0,2)==='c/'){view='cases';caso=h.slice(2);}
-  else if(h) view=h;
-  if(!document.getElementById('v-'+view)) view='home';
+  var view='cases',caso=CASES[0];
+  if(h.slice(0,2)==='c/'){caso=h.slice(2);}
+  else if(h) view=h, caso=null;
+  if(!document.getElementById('v-'+view)) view='cases';
   if(view==='cases'&&(caso===null||CASES.indexOf(caso)<0)) caso=CASES[0];
   var vs=document.querySelectorAll('.view');
   for(var i=0;i<vs.length;i++) vs[i].classList.remove('on');
@@ -129,7 +129,7 @@ def json_dumps(arr):
 def shell(body):
     mod_cards = ''
     for k, n in MODULES:
-        cls = ' class="on"' if k == 'home' else ''
+        cls = ' class="on"' if k == 'cases' else ''
         dest = 'c/' if k == 'cases' else k
         mod_cards += (f'<button data-v="{k}"{cls} '
                       f'onclick="location.hash=\'{dest}\'">{E(n)}</button>')
@@ -150,7 +150,7 @@ def shell(body):
 </nav>
 <main>{body}</main>
 <footer><div class="wrap">
-<p>本站数据来自公开来源并逐条标注出处；同一指标的多个口径一律并列呈现、不作换算；凡查不到来源的数字一概不写。这是读书笔记性质的二次整理，实地情况请以现场为准。</p>
+<p>数字均出自标注的公开来源，多口径并列不换算；实地情况以现场为准。</p>
 </div></footer>
 <script>{js()}</script>
 </body></html>"""
@@ -163,49 +163,6 @@ def case_links(cs, sep='、'):
 def place_brief(c):
     """place 字段常自带（…）补充说明；索引行里只留主地名，避免双重括号。"""
     return c['place'].split('（')[0].strip() or c['place']
-
-
-# ─────────────────────────────────────────── 总览
-
-def body_home():
-    nsrc = sum(len(c['sources']) for c in CASES)
-
-    regions = ''
-    for r in REGION_ORDER:
-        cs = [c for c in CASES if c['region'] == r]
-        items = '；'.join(
-            f'<a href="#c/{c["slug"]}">{E(short(c))}</a>（{E(c["name"])}，{E(c["sub"])}）' for c in cs)
-        regions += f'<p>{E(r)}共 {len(cs)} 处：{items}。</p>'
-
-    agents = ''
-    for a in AGENTS:
-        rel = [c for c in CASES if c['agent'] == a[0]]
-        tail = (f'淮海境内符合这一规律的实例是{case_links(rel)}。'
-                if rel else '这一类在淮海境内没有选入的实例，把它保留在原理层，是为了在读邻区或更远地方时不缺参照。')
-        agents += f'<h3>{E(a[1])}</h3>\n<p>{E(a[2])}。{E(a[4])}{tail}</p>\n'
-
-    return f'''
-<section class="hero wrap">
-<h1>淮海大地上，{len(CASES)} 处能亲手核对的现场</h1>
-<p class="lead">这是一份给实地用的地貌指南：把淮海常见的地貌现象归成 {len(AGENTS)} 类营力，每类落到几处现存、可到达的具体地点；每处都给出坐标与可达性、现场观察要点、成因机制、实测数字与来源。黄河、淮河、沂沭泗三条水系在这里交汇改写，黄泛平原、鲁中南低山丘陵、苏北滨海平原三种大地貌在这里接合——带上这份清单去现场就够了。</p>
-<p>{len(CASES)} 处地点覆盖苏北、皖北、鲁南、豫东四片；所有实测数字出自 {nsrc} 条公开来源，逐条标注出处；同一指标的多个口径并列呈现，不换算、不取单值；查不到来源的数字一概不写。</p>
-</section>
-
-<div class="wrap">
-<h2 id="how">怎么用这个站</h2>
-<p>第一层是原理。地貌的成因被归纳为 {len(AGENTS)} 类营力系统（其中「方山与崮」「人为地貌」两类是本站依据淮海实例补充的）。每一类只回答四件事：控制变量是什么、作用过程怎么推进、留下什么产物、野外凭什么认出来。</p>
-<p>第二层是实例。{len(CASES)} 处淮海境内现存、可到达的地点，覆盖{'、'.join(REGION_ORDER)}。点顶部「实例」卡片，再点下面一排地点短名卡片，就能在 16 处现场之间随时切换。每一处都给出坐标与可达性、现场观察要点、成因机制链、实测数字与它们说明的问题，以及存争议处的双方口径。</p>
-<p>第三层是判定。把淮海最容易认错的 {len(CONFUSIONS)} 组地貌与堆积物摊开对照——悬河故道还是一般河谷、构造湖还是夺淮湖、崮还是丹霞，各自凭什么定案。再往上，一条时间轴把这些地点放回 {len(TIMELINE)} 个锚点，看出它们不是同时形成的。</p>
-
-<h2>地域格局：{E(REGION['name'])}</h2>
-<p>{E(REGION['note'])}</p>
-{regions}
-
-<h2>{len(AGENTS)} 类营力与它们的实例</h2>
-{agents}
-<p class="plain">说明：营力分类是为方便查阅而作的归纳，同一处地貌常是几种营力接力或叠加的结果，分类不构成对成因的排他判断。</p>
-</div>
-'''
 
 
 # ─────────────────────────────────────────── 原理
@@ -326,14 +283,10 @@ def case_inner(c):
 
 
 def body_cases():
-    intro = (f'<section class="hero wrap"><h1>{len(CASES)} 处淮海现存实例</h1>'
-             f'<p class="lead">下面一排短名卡片就是 {len(CASES)} 处现存、可到达的地点，覆盖'
-             f'{"、".join(REGION_ORDER)}；点哪张，下面就出现哪一处的完整内容——坐标与可达性、现场观察要点、'
-             f'成因机制链、实测数字、争议口径与来源，一处一页式地摊开。再点顶排其他卡片，随时离开。</p></section>')
     cases = ''.join(
         f'<div class="casebody wrap" id="case-{c["slug"]}">{case_inner(c)}</div>'
         for c in CASES)
-    return intro + cases
+    return cases
 
 
 # ─────────────────────────────────────────── 野外判定
@@ -470,9 +423,9 @@ def main():
     # 改为「就地覆盖 + 只清掉本次不再产出的多余文件」。
     body = ''.join(
         f'<section class="view" id="v-{k}">{b}</section>'
-        for k, b in [('home', body_home()), ('prins', body_prins()),
-                     ('cases', body_cases()), ('field', body_field()),
-                     ('time', body_time()), ('srcs', body_srcs())])
+        for k, b in [('cases', body_cases()), ('prins', body_prins()),
+                     ('field', body_field()), ('time', body_time()),
+                     ('srcs', body_srcs())])
     pages = {'index.html': shell(body)}
 
     # 清理旧产物中不在本次清单内的文件（逐个删除，失败不影响构建）

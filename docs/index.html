@@ -57,92 +57,10 @@ footer p{text-indent:0;line-height:1.6}
 <nav>
 <div class="topbar"><span class="brand">淮海地貌现场手册</span><span class="spacer"></span>
 <button class="tg" onclick="toggleTheme()">明 / 暗</button></div>
-<div class="cards" data-k="mod"><button data-v="home" class="on" onclick="location.hash='home'">总览</button><button data-v="prins" onclick="location.hash='prins'">原理</button><button data-v="cases" onclick="location.hash='c/'">实例</button><button data-v="field" onclick="location.hash='field'">判定</button><button data-v="time" onclick="location.hash='time'">时间轴</button><button data-v="srcs" onclick="location.hash='srcs'">来源</button></div>
+<div class="cards" data-k="mod"><button data-v="cases" class="on" onclick="location.hash='c/'">实例</button><button data-v="prins" onclick="location.hash='prins'">原理</button><button data-v="field" onclick="location.hash='field'">判定</button><button data-v="time" onclick="location.hash='time'">时间轴</button><button data-v="srcs" onclick="location.hash='srcs'">来源</button></div>
 <div class="cards sub" data-k="case" id="casebar" style="display:none"><button data-c="hongze-lake" onclick="location.hash='c/hongze-lake'">洪泽湖</button><button data-c="feihuanghe" onclick="location.hash='c/feihuanghe'">废黄河</button><button data-c="yancheng-tidal" onclick="location.hash='c/yancheng-tidal'">盐城滩涂</button><button data-c="panan-lake" onclick="location.hash='c/panan-lake'">潘安湖</button><button data-c="luoma-lake" onclick="location.hash='c/luoma-lake'">骆马湖</button><button data-c="yuntai-mountain" onclick="location.hash='c/yuntai-mountain'">云台山</button><button data-c="huangcangyu" onclick="location.hash='c/huangcangyu'">皇藏峪</button><button data-c="huaibei-xiangshan" onclick="location.hash='c/huaibei-xiangshan'">相山</button><button data-c="daigu" onclick="location.hash='c/daigu'">岱崮</button><button data-c="tancheng-fault" onclick="location.hash='c/tancheng-fault'">郯城地震</button><button data-c="baodugu-xionger" onclick="location.hash='c/baodugu-xionger'">熊耳山</button><button data-c="lincangcang-plain" onclick="location.hash='c/lincangcang-plain'">沂沭平原</button><button data-c="weishan-lake" onclick="location.hash='c/weishan-lake'">南四湖</button><button data-c="lankao-sand" onclick="location.hash='c/lankao-sand'">兰考沙地</button><button data-c="shangqiu-gudao" onclick="location.hash='c/shangqiu-gudao'">商丘故道</button><button data-c="mangdangshan" onclick="location.hash='c/mangdangshan'">芒砀山</button></div>
 </nav>
-<main><section class="view" id="v-home">
-<section class="hero wrap">
-<h1>淮海大地上，16 处能亲手核对的现场</h1>
-<p class="lead">这是一份给实地用的地貌指南：把淮海常见的地貌现象归成 9 类营力，每类落到几处现存、可到达的具体地点；每处都给出坐标与可达性、现场观察要点、成因机制、实测数字与来源。黄河、淮河、沂沭泗三条水系在这里交汇改写，黄泛平原、鲁中南低山丘陵、苏北滨海平原三种大地貌在这里接合——带上这份清单去现场就够了。</p>
-<p>16 处地点覆盖苏北、皖北、鲁南、豫东四片；所有实测数字出自 44 条公开来源，逐条标注出处；同一指标的多个口径并列呈现，不换算、不取单值；查不到来源的数字一概不写。</p>
-</section>
-
-<div class="wrap">
-<h2 id="how">怎么用这个站</h2>
-<p>第一层是原理。地貌的成因被归纳为 9 类营力系统（其中「方山与崮」「人为地貌」两类是本站依据淮海实例补充的）。每一类只回答四件事：控制变量是什么、作用过程怎么推进、留下什么产物、野外凭什么认出来。</p>
-<p>第二层是实例。16 处淮海境内现存、可到达的地点，覆盖苏北、皖北、鲁南、豫东。点顶部「实例」卡片，再点下面一排地点短名卡片，就能在 16 处现场之间随时切换。每一处都给出坐标与可达性、现场观察要点、成因机制链、实测数字与它们说明的问题，以及存争议处的双方口径。</p>
-<p>第三层是判定。把淮海最容易认错的 6 组地貌与堆积物摊开对照——悬河故道还是一般河谷、构造湖还是夺淮湖、崮还是丹霞，各自凭什么定案。再往上，一条时间轴把这些地点放回 13 个锚点，看出它们不是同时形成的。</p>
-
-<h2>地域格局：淮海地区</h2>
-<p>黄河、淮河、沂沭泗三条水系的交汇与改写地带；黄泛平原、鲁中南低山丘陵、苏北滨海平原三种大地貌的接合部。</p>
-<p>苏北共 6 处：<a href="#c/hongze-lake">洪泽湖</a>（洪泽湖，一条河把一群小湖挤成「悬」在平原上的大湖）；<a href="#c/feihuanghe">废黄河</a>（废黄河（黄河故道），一条死去的河，成了两大水系的分水岭）；<a href="#c/yancheng-tidal">盐城滩涂</a>（盐城黄海湿地与辐射沙洲，世界上最大的潮间带滩涂，和一把伸向海里的「巨扇」）；<a href="#c/panan-lake">潘安湖</a>（徐州贾汪潘安湖，采煤把地挖塌了，人又把塌陷坑变成了湖）；<a href="#c/luoma-lake">骆马湖</a>（骆马湖，郯庐断裂带里陷下去的湖盆）；<a href="#c/yuntai-mountain">云台山</a>（连云港云台山，江苏最高峰，是一座从海里「长」出来的断块山）。</p><p>皖北共 2 处：<a href="#c/huangcangyu">皇藏峪</a>（宿州皇藏峪，皖北平原上的石灰岩「岛状残丘」）；<a href="#c/huaibei-xiangshan">相山</a>（淮北相山，皖北最高点的石灰岩残丘，被采石「啃」过）。</p><p>鲁南共 5 处：<a href="#c/daigu">岱崮</a>（蒙阴岱崮地貌，戴平顶帽的山——中国第五大造型地貌）；<a href="#c/tancheng-fault">郯城地震</a>（郯城—郯庐断裂带与 1668 年大地震，中国东部唯一一次 8.5 级地震，发生在一条仍在活动的断裂上）；<a href="#c/baodugu-xionger">熊耳山</a>（枣庄熊耳山与抱犊崮，300 多年前那场地震，把整座山的岩层抖裂了）；<a href="#c/lincangcang-plain">沂沭平原</a>（临郯苍平原（沂沭河冲积平原），山水把一块平原「扇」了出来）；<a href="#c/weishan-lake">南四湖</a>（南四湖（微山湖），黄河夺泗之后，泗河故道积水成的北方最大淡水湖）。</p><p>豫东共 3 处：<a href="#c/lankao-sand">兰考沙地</a>（兰考—民权黄泛风沙地，一条改道走了，留下一片会跑的沙）；<a href="#c/shangqiu-gudao">商丘故道</a>（商丘黄河故道与天沐湖，故堤高出地面 13 米，故道里蓄出一串湖）；<a href="#c/mangdangshan">芒砀山</a>（永城芒砀山，豫东千里平原上唯一的山）。</p>
-
-<h2>9 类营力与它们的实例</h2>
-<h3>流水与冲积平原</h3>
-<p>流水用侵蚀、搬运、堆积三种动作塑造地表。河流的搬运与堆积。控制变量是流量、比降、含沙量与基面。淮海平原的主体由它堆出。淮海境内符合这一规律的实例是<a href="#c/feihuanghe">废黄河（黄河故道）</a>、<a href="#c/lincangcang-plain">临郯苍平原（沂沭河冲积平原）</a>、<a href="#c/shangqiu-gudao">商丘黄河故道与天沐湖</a>。</p>
-<h3>湖泊与沼泽</h3>
-<p>静水把泥沙慢慢放下，湖盆边淤积边再造平原。静水环境的蓄积与沉积。控制变量是湖盆形态、来水来沙、水位与出口。淮海境内符合这一规律的实例是<a href="#c/hongze-lake">洪泽湖</a>、<a href="#c/weishan-lake">南四湖（微山湖）</a>。</p>
-<h3>海岸与河口</h3>
-<p>波浪与潮流和来沙角力，岸线随泥沙进退。河流供沙与海洋动力的角力。控制变量是来沙量、波浪与潮流强度、潮差。淮海境内符合这一规律的实例是<a href="#c/yancheng-tidal">盐城黄海湿地与辐射沙洲</a>。</p>
-<h3>风沙与黄土</h3>
-<p>风吹起沙、搬动沙、放下沙，落尘积成黄土。风的吹扬、搬运与堆积。控制变量是风速、起沙条件、物源（粉沙）与植被覆盖。淮海境内符合这一规律的实例是<a href="#c/lankao-sand">兰考—民权黄泛风沙地</a>。</p>
-<h3>岩溶与残丘</h3>
-<p>水溶蚀可溶岩，留下峰林、溶洞与残丘。可溶岩的溶蚀与残留。控制变量是岩性与厚度、水的溶蚀力、透水性与流动性。淮海境内符合这一规律的实例是<a href="#c/huangcangyu">宿州皇藏峪</a>、<a href="#c/huaibei-xiangshan">淮北相山</a>、<a href="#c/mangdangshan">永城芒砀山</a>。</p>
-<h3>斜坡与重力</h3>
-<p>重力让坡上的物质下移，崩塌滑坡泥石流都是它的动作。一切「往下掉」的过程：崩塌、滑坡、崩塌堆积。控制变量是坡度、岩体结构与强度、水与震动。淮海境内符合这一规律的实例是<a href="#c/baodugu-xionger">枣庄熊耳山与抱犊崮</a>。</p>
-<h3>构造与新构造</h3>
-<p>抬升、下降与错动直接给出山地和盆地的骨架。内力给出的舞台：抬升、下降、错动。控制变量是构造运动的方向与速率、断裂格局。淮海境内符合这一规律的实例是<a href="#c/luoma-lake">骆马湖</a>、<a href="#c/yuntai-mountain">连云港云台山</a>、<a href="#c/tancheng-fault">郯城—郯庐断裂带与 1668 年大地震</a>。</p>
-<h3>方山与崮</h3>
-<p>软硬岩层叠置再抬升，差异风化削出顶平身陡的桌状山。平缓岩层 + 软硬相间 + 抬升，被差异风化削出「顶平、身陡、麓缓」的方山。中国第五大造型地貌。淮海境内符合这一规律的实例是<a href="#c/daigu">蒙阴岱崮地貌</a>。</p>
-<h3>人为地貌</h3>
-<p>采掘、堆弃与治水工程如今是肉眼可见的造貌营力。采矿、治水、治沙把地表形态直接改写。控制变量是工程活动的强度与方式。现代地貌学必须把它算进去。淮海境内符合这一规律的实例是<a href="#c/panan-lake">徐州贾汪潘安湖</a>。</p>
-
-<p class="plain">说明：营力分类是为方便查阅而作的归纳，同一处地貌常是几种营力接力或叠加的结果，分类不构成对成因的排他判断。</p>
-</div>
-</section><section class="view" id="v-prins">
-<section class="hero wrap">
-<h1>原理：营力、过程与产物</h1>
-<p class="lead">地貌形态是内外地质营力相互作用的结果：内力给出骨架与高差，外力按各自的规律去削、去搬、去堆。本页把 9 类营力各讲一节，每节只回答四件事：控制变量、作用过程、留下的产物、野外怎么认。其中「方山与崮」「人为地貌」两类是本站依据淮海实例补充的——它们恰是淮海最值得看的东西。</p>
-</section>
-
-<div class="wrap">
-<h2>读地貌的四条底层框架</h2>
-<h3>内力与外力</h3>
-<p>内力（构造运动、火山活动）制造高差与格局，是「舞台」；外力（风化、流水、岩溶、风、海浪）削平高差，是「演员」。淮海是典型的外力主导区：鲁中南的构造隆起提供了碎屑与高差，黄河、淮河、沂沭泗再把碎屑一遍遍铺成平原。</p>
-<h3>成因、形态与年代</h3>
-<p>看一处地貌，要回答三个问题：什么营力造成的（成因）、现在长什么样（形态）、什么时候造成的（年代）。三者缺一，解释就不完整。淮海尤其如此——同样叫「湖」，洪泽湖是淤塞成的，骆马湖是构造成的，潘安湖是人为塌陷成的，形态相近而来历全不相同。</p>
-<h3>规模等级与地域分带</h3>
-<p>地貌是有等级的：大地貌如黄泛平原、鲁中南低山丘陵，中地貌如故道、冲积扇、湖盆，小地貌如沙丘、溶洞、裂谷。同一营力在不同气候与岩性条件下表现完全不同——同为石灰岩，皖北削成残丘，鲁南却成崮。</p>
-<h3>时间是隐藏变量</h3>
-<p>速率乘以时间等于结果。盐城滩涂是每年约两万亩地成陆，废黄河是七百年淤高四到六米，潘安湖塌陷是几十年的事。动手解释之前先算量级，很多看似「不可能」的现象，其实只是「时间不够」。</p>
-
-
-<h2>9 类营力系统</h2>
-<h3 id="fluvial">流水与冲积平原</h3>
-<p>流水用侵蚀、搬运、堆积三种动作塑造地表。河流的搬运与堆积。控制变量是流量、比降、含沙量与基面。淮海平原的主体由它堆出。淮海境内这一类的实例是<a href="#c/feihuanghe">废黄河（黄河故道）</a>、<a href="#c/lincangcang-plain">临郯苍平原（沂沭河冲积平原）</a>、<a href="#c/shangqiu-gudao">商丘黄河故道与天沐湖</a>。</p>
-<h3 id="lacustrine">湖泊与沼泽</h3>
-<p>静水把泥沙慢慢放下，湖盆边淤积边再造平原。静水环境的蓄积与沉积。控制变量是湖盆形态、来水来沙、水位与出口。淮海境内这一类的实例是<a href="#c/hongze-lake">洪泽湖</a>、<a href="#c/weishan-lake">南四湖（微山湖）</a>。</p>
-<h3 id="coastal">海岸与河口</h3>
-<p>波浪与潮流和来沙角力，岸线随泥沙进退。河流供沙与海洋动力的角力。控制变量是来沙量、波浪与潮流强度、潮差。淮海境内这一类的实例是<a href="#c/yancheng-tidal">盐城黄海湿地与辐射沙洲</a>。</p>
-<h3 id="aeolian">风沙与黄土</h3>
-<p>风吹起沙、搬动沙、放下沙，落尘积成黄土。风的吹扬、搬运与堆积。控制变量是风速、起沙条件、物源（粉沙）与植被覆盖。淮海境内这一类的实例是<a href="#c/lankao-sand">兰考—民权黄泛风沙地</a>。</p>
-<h3 id="karst">岩溶与残丘</h3>
-<p>水溶蚀可溶岩，留下峰林、溶洞与残丘。可溶岩的溶蚀与残留。控制变量是岩性与厚度、水的溶蚀力、透水性与流动性。淮海境内这一类的实例是<a href="#c/huangcangyu">宿州皇藏峪</a>、<a href="#c/huaibei-xiangshan">淮北相山</a>、<a href="#c/mangdangshan">永城芒砀山</a>。</p>
-<h3 id="slope">斜坡与重力</h3>
-<p>重力让坡上的物质下移，崩塌滑坡泥石流都是它的动作。一切「往下掉」的过程：崩塌、滑坡、崩塌堆积。控制变量是坡度、岩体结构与强度、水与震动。淮海境内这一类的实例是<a href="#c/baodugu-xionger">枣庄熊耳山与抱犊崮</a>。</p>
-<h3 id="tectonic">构造与新构造</h3>
-<p>抬升、下降与错动直接给出山地和盆地的骨架。内力给出的舞台：抬升、下降、错动。控制变量是构造运动的方向与速率、断裂格局。淮海境内这一类的实例是<a href="#c/luoma-lake">骆马湖</a>、<a href="#c/yuntai-mountain">连云港云台山</a>、<a href="#c/tancheng-fault">郯城—郯庐断裂带与 1668 年大地震</a>。</p>
-<h3 id="mesa">方山与崮</h3>
-<p>软硬岩层叠置再抬升，差异风化削出顶平身陡的桌状山。平缓岩层 + 软硬相间 + 抬升，被差异风化削出「顶平、身陡、麓缓」的方山。中国第五大造型地貌。淮海境内这一类的实例是<a href="#c/daigu">蒙阴岱崮地貌</a>。</p>
-<h3 id="anthropogenic">人为地貌</h3>
-<p>采掘、堆弃与治水工程如今是肉眼可见的造貌营力。采矿、治水、治沙把地表形态直接改写。控制变量是工程活动的强度与方式。现代地貌学必须把它算进去。淮海境内这一类的实例是<a href="#c/panan-lake">徐州贾汪潘安湖</a>。</p>
-
-
-<h2>怎么用这套框架读一处淮海地方</h2>
-<p>先定营力：眼前的形态，多半是几种营力接力或叠加的结果，比如废黄河故道等于黄河流水淤积加上人工筑堤，盐城滩涂等于古长江、古黄河供沙加上海洋动力。再找控制变量：把「为什么会这样」翻译成「哪个变量变了」——洪泽湖与骆马湖的差别，追到最后是湖盆究竟由淤塞而来还是由构造而来。然后问年代：形态相似不等于同时形成，同一条郯庐断裂带上，抬升、陷落与发震发生在完全不同的时间尺度上。最后做排除：列出所有能造成相似形态的成因，逐条排除，构造湖还是夺淮湖、采空塌陷还是构造沉降，靠的都是这一步。</p>
-<p>本页的原理表述是通用的地貌学结论；实例数据全部来自各处标注的公开来源，凡无来源的数字一律不写。原理与实例之间不是一一对应关系：一类营力可以解释多处地点，一处地点也常常需要几类营力合起来解释。</p>
-</div>
-</section><section class="view" id="v-cases"><section class="hero wrap"><h1>16 处淮海现存实例</h1><p class="lead">下面一排短名卡片就是 16 处现存、可到达的地点，覆盖苏北、皖北、鲁南、豫东；点哪张，下面就出现哪一处的完整内容——坐标与可达性、现场观察要点、成因机制链、实测数字、争议口径与来源，一处一页式地摊开。再点顶排其他卡片，随时离开。</p></section><div class="casebody wrap" id="case-hongze-lake"><p class="kicker">苏北 · 湖泊与沼泽 · 洪泽湖</p>
+<main><section class="view" id="v-cases"><div class="casebody wrap" id="case-hongze-lake"><p class="kicker">苏北 · 湖泊与沼泽 · 洪泽湖</p>
 <h1>洪泽湖</h1>
 <p class="lead">一条河把一群小湖挤成「悬」在平原上的大湖</p>
 <p>洪泽湖地处江苏省淮安市、宿迁市之间（洪泽、淮阴、泗阳、泗洪、盱眙五县区）。坐标约 33°06′—33°40′N，118°10′—118°52′E。在淮海四片里属苏北，塑造它的营力是湖泊与沼泽。它的现状是：中国第四大淡水湖；世界文化遗产（大运河节点）、世界灌溉工程遗产。到现场去，洪泽湖大堤（洪泽湖古堰）绵延近 70 公里，可自驾沿堤；三河闸、蒋坝等处可近观；泗洪洪泽湖湿地景区为国家级景区。</p>
@@ -430,7 +348,50 @@ footer p{text-indent:0;line-height:1.6}
 <h2>来源</h2>
 <p class="ref">本页数据出自 2 条公开来源：<a href="https://baike.baidu.com/item/%E8%8A%92%E7%A0%80%E5%B1%B1/65600897" target="_blank" rel="noopener">百度百科：芒砀山（156.8 m、20 余座山丘、燕山中晚期、剥蚀残丘、采石矿坑建地质公园）</a>；<a href="https://henan.sina.com.cn/shangqiu/tourism/2017-02-07/detail-ifyafcyx7284887.shtml" target="_blank" rel="noopener">新浪河南：永城芒砀山（山丘构成、剥蚀残丘地貌、古代泽国与黄河淤埋）</a>。</p>
 <p class="ref">相邻的实例还有<a href="#c/huangcangyu">皇藏峪</a>、<a href="#c/huaibei-xiangshan">相山</a>，点顶排短名卡片即可切过去看。</p>
-<p class="plain">以上观察点与数字均取自公开来源，未做现场复核；实地情况会随季节、水位与工程进展变化，出发前请再核对一次。本页共 8 组实测数据，全部标注来源。</p></div></section><section class="view" id="v-field">
+<p class="plain">以上观察点与数字均取自公开来源，未做现场复核；实地情况会随季节、水位与工程进展变化，出发前请再核对一次。本页共 8 组实测数据，全部标注来源。</p></div></section><section class="view" id="v-prins">
+<section class="hero wrap">
+<h1>原理：营力、过程与产物</h1>
+<p class="lead">地貌形态是内外地质营力相互作用的结果：内力给出骨架与高差，外力按各自的规律去削、去搬、去堆。本页把 9 类营力各讲一节，每节只回答四件事：控制变量、作用过程、留下的产物、野外怎么认。其中「方山与崮」「人为地貌」两类是本站依据淮海实例补充的——它们恰是淮海最值得看的东西。</p>
+</section>
+
+<div class="wrap">
+<h2>读地貌的四条底层框架</h2>
+<h3>内力与外力</h3>
+<p>内力（构造运动、火山活动）制造高差与格局，是「舞台」；外力（风化、流水、岩溶、风、海浪）削平高差，是「演员」。淮海是典型的外力主导区：鲁中南的构造隆起提供了碎屑与高差，黄河、淮河、沂沭泗再把碎屑一遍遍铺成平原。</p>
+<h3>成因、形态与年代</h3>
+<p>看一处地貌，要回答三个问题：什么营力造成的（成因）、现在长什么样（形态）、什么时候造成的（年代）。三者缺一，解释就不完整。淮海尤其如此——同样叫「湖」，洪泽湖是淤塞成的，骆马湖是构造成的，潘安湖是人为塌陷成的，形态相近而来历全不相同。</p>
+<h3>规模等级与地域分带</h3>
+<p>地貌是有等级的：大地貌如黄泛平原、鲁中南低山丘陵，中地貌如故道、冲积扇、湖盆，小地貌如沙丘、溶洞、裂谷。同一营力在不同气候与岩性条件下表现完全不同——同为石灰岩，皖北削成残丘，鲁南却成崮。</p>
+<h3>时间是隐藏变量</h3>
+<p>速率乘以时间等于结果。盐城滩涂是每年约两万亩地成陆，废黄河是七百年淤高四到六米，潘安湖塌陷是几十年的事。动手解释之前先算量级，很多看似「不可能」的现象，其实只是「时间不够」。</p>
+
+
+<h2>9 类营力系统</h2>
+<h3 id="fluvial">流水与冲积平原</h3>
+<p>流水用侵蚀、搬运、堆积三种动作塑造地表。河流的搬运与堆积。控制变量是流量、比降、含沙量与基面。淮海平原的主体由它堆出。淮海境内这一类的实例是<a href="#c/feihuanghe">废黄河（黄河故道）</a>、<a href="#c/lincangcang-plain">临郯苍平原（沂沭河冲积平原）</a>、<a href="#c/shangqiu-gudao">商丘黄河故道与天沐湖</a>。</p>
+<h3 id="lacustrine">湖泊与沼泽</h3>
+<p>静水把泥沙慢慢放下，湖盆边淤积边再造平原。静水环境的蓄积与沉积。控制变量是湖盆形态、来水来沙、水位与出口。淮海境内这一类的实例是<a href="#c/hongze-lake">洪泽湖</a>、<a href="#c/weishan-lake">南四湖（微山湖）</a>。</p>
+<h3 id="coastal">海岸与河口</h3>
+<p>波浪与潮流和来沙角力，岸线随泥沙进退。河流供沙与海洋动力的角力。控制变量是来沙量、波浪与潮流强度、潮差。淮海境内这一类的实例是<a href="#c/yancheng-tidal">盐城黄海湿地与辐射沙洲</a>。</p>
+<h3 id="aeolian">风沙与黄土</h3>
+<p>风吹起沙、搬动沙、放下沙，落尘积成黄土。风的吹扬、搬运与堆积。控制变量是风速、起沙条件、物源（粉沙）与植被覆盖。淮海境内这一类的实例是<a href="#c/lankao-sand">兰考—民权黄泛风沙地</a>。</p>
+<h3 id="karst">岩溶与残丘</h3>
+<p>水溶蚀可溶岩，留下峰林、溶洞与残丘。可溶岩的溶蚀与残留。控制变量是岩性与厚度、水的溶蚀力、透水性与流动性。淮海境内这一类的实例是<a href="#c/huangcangyu">宿州皇藏峪</a>、<a href="#c/huaibei-xiangshan">淮北相山</a>、<a href="#c/mangdangshan">永城芒砀山</a>。</p>
+<h3 id="slope">斜坡与重力</h3>
+<p>重力让坡上的物质下移，崩塌滑坡泥石流都是它的动作。一切「往下掉」的过程：崩塌、滑坡、崩塌堆积。控制变量是坡度、岩体结构与强度、水与震动。淮海境内这一类的实例是<a href="#c/baodugu-xionger">枣庄熊耳山与抱犊崮</a>。</p>
+<h3 id="tectonic">构造与新构造</h3>
+<p>抬升、下降与错动直接给出山地和盆地的骨架。内力给出的舞台：抬升、下降、错动。控制变量是构造运动的方向与速率、断裂格局。淮海境内这一类的实例是<a href="#c/luoma-lake">骆马湖</a>、<a href="#c/yuntai-mountain">连云港云台山</a>、<a href="#c/tancheng-fault">郯城—郯庐断裂带与 1668 年大地震</a>。</p>
+<h3 id="mesa">方山与崮</h3>
+<p>软硬岩层叠置再抬升，差异风化削出顶平身陡的桌状山。平缓岩层 + 软硬相间 + 抬升，被差异风化削出「顶平、身陡、麓缓」的方山。中国第五大造型地貌。淮海境内这一类的实例是<a href="#c/daigu">蒙阴岱崮地貌</a>。</p>
+<h3 id="anthropogenic">人为地貌</h3>
+<p>采掘、堆弃与治水工程如今是肉眼可见的造貌营力。采矿、治水、治沙把地表形态直接改写。控制变量是工程活动的强度与方式。现代地貌学必须把它算进去。淮海境内这一类的实例是<a href="#c/panan-lake">徐州贾汪潘安湖</a>。</p>
+
+
+<h2>怎么用这套框架读一处淮海地方</h2>
+<p>先定营力：眼前的形态，多半是几种营力接力或叠加的结果，比如废黄河故道等于黄河流水淤积加上人工筑堤，盐城滩涂等于古长江、古黄河供沙加上海洋动力。再找控制变量：把「为什么会这样」翻译成「哪个变量变了」——洪泽湖与骆马湖的差别，追到最后是湖盆究竟由淤塞而来还是由构造而来。然后问年代：形态相似不等于同时形成，同一条郯庐断裂带上，抬升、陷落与发震发生在完全不同的时间尺度上。最后做排除：列出所有能造成相似形态的成因，逐条排除，构造湖还是夺淮湖、采空塌陷还是构造沉降，靠的都是这一步。</p>
+<p>本页的原理表述是通用的地貌学结论；实例数据全部来自各处标注的公开来源，凡无来源的数字一律不写。原理与实例之间不是一一对应关系：一类营力可以解释多处地点，一处地点也常常需要几类营力合起来解释。</p>
+</div>
+</section><section class="view" id="v-field">
 <section class="hero wrap">
 <h1>野外判定：怎么认，怎么防认错</h1>
 <p class="lead">这是一份可以直接带到现场的判定手册：6 组淮海地区高发的易混淆对照，加一份通用的观察顺序。核心原则只有一句——形态相似的成因未必相同，孤立的证据不足以定案。</p>
@@ -537,7 +498,7 @@ footer p{text-indent:0;line-height:1.6}
 </div>
 </section></main>
 <footer><div class="wrap">
-<p>本站数据来自公开来源并逐条标注出处；同一指标的多个口径一律并列呈现、不作换算；凡查不到来源的数字一概不写。这是读书笔记性质的二次整理，实地情况请以现场为准。</p>
+<p>数字均出自标注的公开来源，多口径并列不换算；实地情况以现场为准。</p>
 </div></footer>
 <script>
 (function(){var t=localStorage.getItem('hhgmtheme');if(t)document.documentElement.setAttribute('data-theme',t);
@@ -547,10 +508,10 @@ document.documentElement.setAttribute('data-theme',c);localStorage.setItem('hhgm
 var CASES=["hongze-lake","feihuanghe","yancheng-tidal","panan-lake","luoma-lake","yuntai-mountain","huangcangyu","huaibei-xiangshan","daigu","tancheng-fault","baodugu-xionger","lincangcang-plain","weishan-lake","lankao-sand","shangqiu-gudao","mangdangshan"];
 function route(){
   var h=decodeURIComponent(location.hash.replace(/^#\/?/,''));
-  var view='home',caso=null;
-  if(h.slice(0,2)==='c/'){view='cases';caso=h.slice(2);}
-  else if(h) view=h;
-  if(!document.getElementById('v-'+view)) view='home';
+  var view='cases',caso=CASES[0];
+  if(h.slice(0,2)==='c/'){caso=h.slice(2);}
+  else if(h) view=h, caso=null;
+  if(!document.getElementById('v-'+view)) view='cases';
   if(view==='cases'&&(caso===null||CASES.indexOf(caso)<0)) caso=CASES[0];
   var vs=document.querySelectorAll('.view');
   for(var i=0;i<vs.length;i++) vs[i].classList.remove('on');
