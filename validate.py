@@ -90,9 +90,9 @@ out.append('hard-ban hits img=%d table=%d emoji=%d search=%d md-bold=%d (all sho
 
 # ── 标签式交互结构
 idx = open(os.path.join(DOCS, 'index.html'), encoding='utf-8').read()
-out.append('module cards: %d (should be 6)' % idx.count('data-v="'))
+out.append('module cards: %d (should be 5)' % idx.count('data-v="'))
 out.append('case cards: %d (should be 26)' % idx.count('data-c="'))
-out.append('views: %d (should be 6)' % idx.count('<section class="view"'))
+out.append('views: %d (should be 5)' % idx.count('<section class="view"'))
 out.append('case bodies: %d (should be 26)' % idx.count('<div class="casebody'))
 
 # ── 段落体量：散文是否真的成段

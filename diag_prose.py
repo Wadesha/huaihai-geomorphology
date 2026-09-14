@@ -4,7 +4,7 @@
 """
 import os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from site_data import (CASES, AGENTS, CONFUSIONS, TIMELINE, FRAMES, HOME,
+from site_data import (CASES, AGENTS, CONFUSIONS, TIMELINE, FRAMES,
                        FIELD_ORDER, FIELD_TOOLS, FIELD_BOUND, TIMELINE_NOTE)
 
 AG = {a['id']: a for a in AGENTS}
@@ -112,10 +112,6 @@ for when, what, desc, aid in TIMELINE:
 for t, p1, p2 in FRAMES:
     if len(p1) < 60 or len(p2) < 60:
         flags.append(f'[frame] {t}：段落过短')
-
-for name, paras in HOME['how']:
-    if len(paras) < 2:
-        flags.append(f'[home] {name}：段落数 {len(paras)}，少于 2')
 
 if len(FIELD_ORDER) < 5:
     flags.append('[field] 观察顺序条目过少')

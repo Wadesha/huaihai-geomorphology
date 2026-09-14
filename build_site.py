@@ -9,7 +9,7 @@
 """
 import os, html
 from site_data import (REGION, AGENTS, CASES, CONFUSIONS, TIMELINE,
-                       AGENT_EN, FRAMES, HOME, FIELD_ORDER, FIELD_TOOLS,
+                       AGENT_EN, FRAMES, FIELD_ORDER, FIELD_TOOLS,
                        FIELD_BOUND, TIMELINE_NOTE)
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -18,7 +18,7 @@ AGENT_D = {a['id']: a for a in AGENTS}
 REGION_ORDER = ['苏北', '皖北', '鲁南', '豫东']
 E = html.escape
 
-MODULES = [('home', '总览'), ('prins', '原理'), ('cases', '实例'),
+MODULES = [('cases', '实例'), ('prins', '原理'),
            ('field', '判定'), ('time', '时间轴'), ('srcs', '来源')]
 
 # 每处实例的卡片短名（顶排卡片空间有限，只放 2—4 字）
@@ -139,10 +139,10 @@ document.documentElement.setAttribute('data-theme',c);localStorage.setItem('hhgm
 var CASES=%s;
 function route(){
   var h=decodeURIComponent(location.hash.replace(/^#\\/?/,''));
-  var view='home',caso=null;
+  var view='cases',caso=null;
   if(h.slice(0,2)==='c/'){view='cases';caso=h.slice(2);}
   else if(h){view=h;}
-  if(!document.getElementById('v-'+view)) view='home';
+  if(!document.getElementById('v-'+view)) view='cases';
   if(view==='cases'&&(caso===null||CASES.indexOf(caso)<0)) caso=CASES[0];
   var vs=document.querySelectorAll('.view');
   for(var i=0;i<vs.length;i++) vs[i].classList.remove('on');
@@ -172,8 +172,8 @@ def json_dumps(arr):
 def shell(body):
     mod_cards = ''
     for k, n in MODULES:
-        cls = ' class="on"' if k == 'home' else ''
-        dest = 'home' if k == 'home' else k
+        cls = ' class="on"' if k == 'cases' else ''
+        dest = 'c/' if k == 'cases' else k
         mod_cards += (f'<button data-v="{k}"{cls} '
                       f'onclick="location.hash=\'{dest}\'">{E(n)}</button>')
     case_cards = ''.join(
@@ -201,51 +201,6 @@ def shell(body):
 
 def case_links(cs, sep='、'):
     return sep.join(f'<a href="#c/{c["slug"]}">{E(c["name"])}</a>' for c in cs)
-
-
-# ─────────────────────────────────────────── 总览
-
-def body_home():
-    how = ''
-    for title, paras in HOME['how']:
-        how += f'<h3>{E(title)}</h3>\n' + ''.join(f'<p>{E(x)}</p>\n' for x in paras)
-
-    reg = ''
-    for r in REGION_ORDER:
-        cs = [c for c in CASES if c['region'] == r]
-        if not cs:
-            continue
-        reg += f'<p>{E(r)}，{len(cs)} 处：{case_links(cs)}。</p>\n'
-
-    ag = ''
-    for a in AGENTS:
-        cs = [c for c in CASES if c['agent'] == a['id']]
-        tail = f'这一类的实例是{case_links(cs)}。' if cs else ''
-        ag += f'<p>{E(a["name"])}，{E(a["oneline"])}——{E(a["ctrl"])}{tail}</p>\n'
-
-    return f'''
-<section class="hero wrap">
-<h1>淮海地貌现场手册</h1>
-<p class="kicker">A field guide to the landforms of the Huaihai region: where to go, what to look at, and why it looks that way.</p>
-<p class="lead">{E(HOME['lead'])}</p>
-<p>{E(REGION['note'])}</p>
-</section>
-
-<div class="wrap">
-<h2>怎么用这份手册</h2>
-{how}
-
-<h2>四片地貌，各有各的性格</h2>
-{reg}
-<p>四片的差别不是行政区划的差别，而是营力组合的差别。往苏北走，你看的是水与沙的账本；往皖北走，你看的是平原上剩下的几块硬骨头；往鲁南走，你看的是断块、崮与断裂带；往豫东走，你看的是河道搬走之后留下的痕迹。同一类地貌在不同片区里的性格不同，这正是比较的价值。</p>
-
-<h2>{len(AGENTS)} 类营力，一句话一类</h2>
-{ag}
-
-<h2>读它的顺序</h2>
-<p>{E(HOME['close'])}</p>
-</div>
-'''
 
 
 # ─────────────────────────────────────────── 原理
@@ -464,7 +419,7 @@ def main():
     # 改为「就地覆盖 + 只清掉本次不再产出的多余文件」。
     body = ''.join(
         f'<section class="view" id="v-{k}">{b}</section>'
-        for k, b in [('home', body_home()), ('prins', body_prins()), ('cases', body_cases()),
+        for k, b in [('prins', body_prins()), ('cases', body_cases()),
                      ('field', body_field()), ('time', body_time()), ('srcs', body_srcs())])
     pages = {'index.html': shell(body)}
 
