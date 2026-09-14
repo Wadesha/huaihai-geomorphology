@@ -2,7 +2,7 @@
 <html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>淮海地貌现场手册</title>
-<meta name="description" content="淮海地貌现场手册：9 类营力原理 + 16 个淮海现存实例 + 野外判定对照。">
+<meta name="description" content="淮海地貌现场手册：9 类营力原理 + 22 个淮海现存实例 + 野外判定对照。">
 <style>
 *{box-sizing:border-box}
 :root{
@@ -60,7 +60,7 @@ footer p{text-indent:0;line-height:1.6}
 <div class="topbar"><span class="brand">淮海地貌现场手册</span><span class="spacer"></span>
 <button class="tg" onclick="toggleTheme()">明 / 暗</button></div>
 <div class="cards" data-k="mod"><button data-v="cases" class="on" onclick="location.hash='c/'">实例</button><button data-v="prins" onclick="location.hash='prins'">原理</button><button data-v="field" onclick="location.hash='field'">判定</button><button data-v="time" onclick="location.hash='time'">时间轴</button><button data-v="srcs" onclick="location.hash='srcs'">来源</button></div>
-<div class="cards sub" data-k="case" id="casebar" style="display:none"><button data-c="hongze-lake" onclick="location.hash='c/hongze-lake'">洪泽湖</button><button data-c="feihuanghe" onclick="location.hash='c/feihuanghe'">废黄河</button><button data-c="yancheng-tidal" onclick="location.hash='c/yancheng-tidal'">盐城滩涂</button><button data-c="panan-lake" onclick="location.hash='c/panan-lake'">潘安湖</button><button data-c="luoma-lake" onclick="location.hash='c/luoma-lake'">骆马湖</button><button data-c="yuntai-mountain" onclick="location.hash='c/yuntai-mountain'">云台山</button><button data-c="huangcangyu" onclick="location.hash='c/huangcangyu'">皇藏峪</button><button data-c="huaibei-xiangshan" onclick="location.hash='c/huaibei-xiangshan'">相山</button><button data-c="daigu" onclick="location.hash='c/daigu'">岱崮</button><button data-c="tancheng-fault" onclick="location.hash='c/tancheng-fault'">郯城地震</button><button data-c="baodugu-xionger" onclick="location.hash='c/baodugu-xionger'">熊耳山</button><button data-c="lincangcang-plain" onclick="location.hash='c/lincangcang-plain'">沂沭平原</button><button data-c="weishan-lake" onclick="location.hash='c/weishan-lake'">南四湖</button><button data-c="lankao-sand" onclick="location.hash='c/lankao-sand'">兰考沙地</button><button data-c="shangqiu-gudao" onclick="location.hash='c/shangqiu-gudao'">商丘故道</button><button data-c="mangdangshan" onclick="location.hash='c/mangdangshan'">芒砀山</button></div>
+<div class="cards sub" data-k="case" id="casebar" style="display:none"><button data-c="hongze-lake" onclick="location.hash='c/hongze-lake'">洪泽湖</button><button data-c="feihuanghe" onclick="location.hash='c/feihuanghe'">废黄河</button><button data-c="yancheng-tidal" onclick="location.hash='c/yancheng-tidal'">盐城滩涂</button><button data-c="panan-lake" onclick="location.hash='c/panan-lake'">潘安湖</button><button data-c="luoma-lake" onclick="location.hash='c/luoma-lake'">骆马湖</button><button data-c="yuntai-mountain" onclick="location.hash='c/yuntai-mountain'">云台山</button><button data-c="qinshan-island" onclick="location.hash='c/qinshan-island'">秦山岛</button><button data-c="liyashan" onclick="location.hash='c/liyashan'">蛎岈山</button><button data-c="huangcangyu" onclick="location.hash='c/huangcangyu'">皇藏峪</button><button data-c="huaibei-xiangshan" onclick="location.hash='c/huaibei-xiangshan'">相山</button><button data-c="bagongshan" onclick="location.hash='c/bagongshan'">八公山</button><button data-c="daigu" onclick="location.hash='c/daigu'">岱崮</button><button data-c="tancheng-fault" onclick="location.hash='c/tancheng-fault'">郯城地震</button><button data-c="baodugu-xionger" onclick="location.hash='c/baodugu-xionger'">熊耳山</button><button data-c="lincangcang-plain" onclick="location.hash='c/lincangcang-plain'">沂沭平原</button><button data-c="weishan-lake" onclick="location.hash='c/weishan-lake'">南四湖</button><button data-c="yishui-cave" onclick="location.hash='c/yishui-cave'">地下大峡</button><button data-c="guimengding" onclick="location.hash='c/guimengding'">龟蒙顶</button><button data-c="lankao-sand" onclick="location.hash='c/lankao-sand'">兰考沙地</button><button data-c="shangqiu-gudao" onclick="location.hash='c/shangqiu-gudao'">商丘故道</button><button data-c="mangdangshan" onclick="location.hash='c/mangdangshan'">芒砀山</button><button data-c="kaifeng-river" onclick="location.hash='c/kaifeng-river'">开封悬河</button></div>
 </nav>
 <main><section class="view" id="v-cases"><div class="casebody wrap" id="case-hongze-lake"><p class="kicker">苏北 · 湖泊与沼泽 · 洪泽湖</p>
 <h1>洪泽湖</h1>
@@ -170,7 +170,43 @@ footer p{text-indent:0;line-height:1.6}
 <h2>来源</h2>
 <p class="ref">本页数据出自 3 条公开来源：<a href="https://zrzy.jiangsu.gov.cn/lyg/gtzx/ztzl/aqbmgz/200904/t20090421_16521.htm" target="_blank" rel="noopener">江苏省自然资源厅：连云港市地质灾害（云台山变质岩、玉女峰 625.3 m、坡度与灾害）</a>；<a href="http://yts.lyg.gov.cn/ytsfjqgwh/wlyt/content/9c2ddb92-468b-42b5-bc1d-a1438912dd94.html" target="_blank" rel="noopener">连云港市云台山景区：江苏最高峰就在花果山（624.4 m 正式高程）</a>；<a href="https://baike.com/wikiid/634076218144577112" target="_blank" rel="noopener">快懂百科：玉女峰（断块山组成、前古生代变质岩系、古海蚀地貌）</a>。</p>
 <p class="ref">相邻的实例还有<a href="#c/luoma-lake">骆马湖</a>、<a href="#c/tancheng-fault">郯城地震</a>，点顶排短名卡片即可切过去看。</p>
-<p class="plain">以上观察点与数字均取自公开来源，未做现场复核；实地情况会随季节、水位与工程进展变化，出发前请再核对一次。本页共 7 组实测数据，全部标注来源。</p></div><div class="casebody wrap" id="case-huangcangyu"><p class="kicker">皖北 · 岩溶与残丘 · 宿州皇藏峪</p>
+<p class="plain">以上观察点与数字均取自公开来源，未做现场复核；实地情况会随季节、水位与工程进展变化，出发前请再核对一次。本页共 7 组实测数据，全部标注来源。</p></div><div class="casebody wrap" id="case-qinshan-island"><p class="kicker">苏北 · 海岸与河口 · 秦山岛</p>
+<h1>秦山岛</h1>
+<p class="lead">海蚀把一座岛削成「神路」，还把整岛推向了陆地</p>
+<p>秦山岛地处江苏省连云港市赣榆区青口镇东侧海州湾（近岸基岩岛屿）。坐标北纬 34°52.2′、东经 119°16.8′；面积约 0.1928 km²。在淮海四片里属苏北，塑造它的营力是海岸与河口。它的现状是：国家 4A 级旅游景区、国家级海洋公园、国家级海洋牧场示范区。到现场去，秦山岛景区（4A），经 1850 米栈桥与陆岛码头相连；岛上可观神路、将军石、海蚀崖</p>
+<p>秦山岛本是海州湾里一座由石英岩与大理岩组成的近岸基岩小岛。长期海浪冲击加上历史上的海平面涨落，整岛岸线都被海蚀——海蚀崖高 20—50 米，崖脚堆着直径数米到十几米的巨大岩块。岛南有一条长 2.6 公里的砾石连岛坝「秦山神路」，是海蚀产物被潮流搬运、在岛与陆地之间堆成的天然坝体。它把「海岸侵蚀」这套动作，做成了肉眼可辨的标本。</p>
+<h2>到哪看，看什么</h2>
+<p>海岸现场，看潮汐留下的分带，以及岸线正在向哪个方向推进。从赣榆青口镇陆岛码头沿 1850 米栈桥上岛：桥那头是基岩小岛、桥这头是平原海岸，栈桥本身就是「岛与陆」关系的注解。沿岛南的「神路」走一段退潮时露出的砾石坝：脚下七彩砾石铺成的潜径，坝顶只高出高潮位 0.8 米，涨潮就会没入海中——连岛坝的「潮间带」属性一目了然。到东峰悬崖下看将军石：两尊约 20 米高的海蚀岩柱立在水边，「二将军」已被巨浪拦腰截断，岩柱是海浪沿节理长期掏蚀的成品。在岛周崖脚看崩落堆积：直径数米到十几米的巨大岩块堆在崖麓，越靠崖根块径越大——海蚀崖上部沿节理崩落，把岩块「卸」到脚下。站上岛北现代磨蚀阶地远望：阶地宽 150—200 米，与陆地之间隔着淤泥质海岸，连岛坝恰好是沙质与泥质海岸的分界——一座岛改变了沿岸沉积的格局。</p>
+<h2>背后的原理</h2>
+<p>河流供沙与海洋动力的角力。控制变量是来沙量、波浪与潮流强度、潮差。落到这一处，机制是这样的：物质基础：石英岩、大理岩厚层坚硬，抗蚀性强，使小岛能在海浪中长期留存。海蚀为主：海浪冲击加历史海平面升降，全岛岸线均受海蚀，形成高 20—50 m 的海蚀崖。崩落堆积：崖上部岩层沿节理断面崩落，在崖麓堆成巨石——海蚀与重力崩塌接力。连岛坝的生成：潮流将岛岸侵蚀剥离的砾石搬运、聚于岛与陆之间，堆成 2.6 km 的「神路」坝体。分界效应：连岛坝阻挡海州湾南部泥质沉积北上，使坝南为淤泥质、坝北为沙质海岸。</p>
+<h2>这些数字在说什么</h2>
+<p>0.1928 km²，一座「十倍于今」的岛被海蚀削剩的残体，海蚀的量级直接写在面积上。2.6 km 神路，连岛坝是潮流搬运加堆积的产物，不是人工堤。20—50 m 海蚀崖，基岩海岸被浪「咬」出的高度，与平原海岸截然不同。与盐城滩涂对照，一个被浪削（秦山岛），一个被沙堆（盐城），海岸的两种性格。</p>
+<h2>实测数据</h2>
+<p>面积，约 0.1928 km²（一说 0.19 km²），外形呈单面山、形似瑶琴——基岩岛屿，多断裂构造。岩性，全岛由石英岩及大理岩构成，夹云母片岩；岩层单斜，倾角 40°—50°——厚层坚硬、多断裂，是抗蚀的基础。海蚀崖，全岛岸线均受海蚀，海蚀崖高 20—50 m；崖麓堆积直径数米至十几米的巨大岩块——海蚀与崩落同步进行。秦山神路，南部砾石连岛坝长 2.6 km，北宽 400 m、南端尾宽 50 m，坝顶高出高潮位 0.8 m，海底以上厚 5—5.8 m——中国最长的海上神路，独步华夏。将军石，东峰悬崖下两尊海蚀岩柱高约 20 m，称「大将军」「二将军」——海蚀型岩柱，全国沿海少见。磨蚀阶地，岛北及西现代磨蚀阶地宽 150—200 m，有 15 m 高海蚀柱、海蚀穹——海蚀现象壮观。</p>
+<h2>争议与口径</h2>
+<p>面积有约 0.1928 km² 与 0.19 km² 两说；神路长度有 2.6 km 与个别旧载「26 公里」（显为误植）之别；岩层倾角 40°—50°。本站取百度百科与景区官方口径。</p>
+<h2>来源</h2>
+<p class="ref">本页数据出自 2 条公开来源：<a href="https://baike.baidu.com/item/%E7%A7%A6%E5%B1%B1%E5%B2%9B/2056937" target="_blank" rel="noopener">百度百科：秦山岛（0.1928 km²、石英岩大理岩、海蚀崖 20—50 m、神路 2.6 km、将军石、4A）</a>；<a href="https://m.lygwfly.com/pd.jsp?desc=true&amp;mid=3&amp;pid=204&amp;sortName=name" target="_blank" rel="noopener">连云港秦山岛风景区：海蚀崖、神路连岛坝尺度与岩性（景区资料）</a>。</p>
+<p class="ref">相邻的实例还有<a href="#c/yancheng-tidal">盐城滩涂</a>、<a href="#c/yuntai-mountain">云台山</a>，点顶排短名卡片即可切过去看。</p>
+<p class="plain">以上观察点与数字均取自公开来源，未做现场复核；实地情况会随季节、水位与工程进展变化，出发前请再核对一次。本页共 6 组实测数据，全部标注来源。</p></div><div class="casebody wrap" id="case-liyashan"><p class="kicker">苏北 · 海岸与河口 · 蛎岈山（牡蛎礁）</p>
+<h1>蛎岈山（牡蛎礁）</h1>
+<p class="lead">一座由活牡蛎堆出来的「会沉浮的山」</p>
+<p>蛎岈山（牡蛎礁）地处江苏省南通市海门区东灶港东北约 4 海里的黄海中（南黄海潮间带）。坐标约东经 121°33′以西、北纬 32°10′以南；东西长 1.43 海里、南北宽 0.9 海里。在淮海四片里属苏北，塑造它的营力是海岸与河口。它的现状是：中国唯一、世界罕见的潮间带天然活体牡蛎礁；国家级海洋公园（2006 年首批国家级海洋特别保护区）。到现场去，蛎岈山国家海洋公园（国家级海洋特别保护区），可乘船登岛；东灶港游客中心距公园约 2.6 km</p>
+<p>蛎岈山不是普通的山，而是由牡蛎活体和各种海洋生物在淤泥质滩涂上堆成的潮间带生物岛礁。潮落为岛、潮涨为礁，当地人叫它「沉浮山」。它整体呈东西走向，占地约 6600 亩，地质年龄约 1700 余年——是全球少见的「活体贝壳礁」现场。</p>
+<h2>到哪看，看什么</h2>
+<p>海岸现场，看潮汐留下的分带，以及岸线正在向哪个方向推进。到海门东灶港游客中心乘船向东北约 4 海里（约 2.6 km 航程）出发：海面看似空旷，下一刻退潮露出一片由牡蛎壳堆成的「山」——沉浮山只在低潮时现形。登礁后看礁体表面：活体牡蛎密布在贝壳礁体上，礁体由黄泥灶、泓西堆、大马鞍等大小牡蛎堆坨拼接而成——生物建造的「山体」结构就在脚下。在礁区看潮间带分带：涨潮礁没入海、落潮礁出露为岛，一天之内「山—礁」切换一次，是潮间带最直白的演示。观察周边淤泥质滩涂：蛎岈山出现在淤泥质海岸而非基岩海岸，说明生物造礁不挑底质，却在长江带来的泥沙里长成世界最大牡蛎滩，成因至今仍有谜。看管理人员投放的人工礁体：为防海岸侵蚀、保天然礁体而增殖放流，人工与天然礁体并排——保护工程本身就是现场的一部分。</p>
+<h2>背后的原理</h2>
+<p>河流供沙与海洋动力的角力。控制变量是来沙量、波浪与潮流强度、潮差。落到这一处，机制是这样的：生物建造：牡蛎层层附着、死亡贝壳经生化反应胶结成礁体，表面再长活体，越堆越高。潮间带定位：礁体处于南黄海潮间带，涨落潮交替控制其「出露—淹没」节律。物源背景：长江入海带来的大量泥沙在南黄海沿岸堆积，为牡蛎提供了附着基底与营养。保护机制：人工礁体投放加增殖放流，减缓海岸侵蚀、维持礁体规模。</p>
+<h2>这些数字在说什么</h2>
+<p>6600 亩 / 3.5 km²，世界面积最大的牡蛎滩，却长在淤泥质海岸上。1700 余年，活体礁的「年龄」是生物持续建造的时间，不是岩石年龄。沉浮山，潮间带的本质——它一半是山、一半是礁，取决于潮位。与秦山岛对照，一个被海浪削（秦山岛基岩海蚀），一个被生物堆（蛎岈山活体礁），海岸的两种生成方式。</p>
+<h2>实测数据</h2>
+<p>规模，整体东西长 1.43 海里、南北宽 0.9 海里，方圆 6600 多亩（约 3.5 km²），平均高出海平面约 4.5 m——由 30 余个（一说 60 余个）牡蛎堆坨积而成。属性，潮间带天然活体牡蛎礁，由熊本牡蛎、近江牡蛎、密鳞牡蛎组成，潮间带主要造礁为熊本牡蛎——中国唯一、世界罕见。地质年龄，约 1540—1946 年（一说超 1700 年，底层最老牡蛎壳可追溯至约 3900 年前）——固着基及造礁历史可达数千年乃至上万年。保护级别，2006 年建国家级海洋特别保护区（江苏首个），后建为国家级海洋公园——持续投放人工礁体修复。生物多样性，观测物种 336 种，含黄嘴白鹭、黑嘴鸥等珍稀保护物种——候鸟重要栖息地。</p>
+<h2>争议与口径</h2>
+<p>东西长 1.43 海里、南北宽 0.9 海里、6600 亩（约 3.5 km²）为通用口径；地质年龄有约 1540—1946 年与「超 1700 年」两说，底层最老牡蛎壳约 3900 年前；牡蛎堆数量有「30 余个」与「60 余个」两说。本站并列。</p>
+<h2>来源</h2>
+<p class="ref">本页数据出自 2 条公开来源：<a href="https://baike.baidu.com/item/%E8%9B%8E%E5%B2%88%E5%B1%B1%E7%94%9F%E6%80%81%E6%97%85%E6%B8%B8/8614945" target="_blank" rel="noopener">百度百科：蛎岈山生态旅游（潮间带活体牡蛎礁、6600 亩、1700 余年、国家级海洋公园）</a>；<a href="https://baike.baidu.com/item/%E6%B5%B7%E9%97%A8%E4%B8%9C%E7%81%B6%E6%B8%AF/1612056" target="_blank" rel="noopener">百度百科：海门东灶港（蛎岈山方位、6600 亩、平均高出海平面 4.5 m、中国唯一活体牡蛎礁）</a>。</p>
+<p class="ref">相邻的实例还有<a href="#c/qinshan-island">秦山岛</a>、<a href="#c/yancheng-tidal">盐城滩涂</a>，点顶排短名卡片即可切过去看。</p>
+<p class="plain">以上观察点与数字均取自公开来源，未做现场复核；实地情况会随季节、水位与工程进展变化，出发前请再核对一次。本页共 5 组实测数据，全部标注来源。</p></div><div class="casebody wrap" id="case-huangcangyu"><p class="kicker">皖北 · 岩溶与残丘 · 宿州皇藏峪</p>
 <h1>宿州皇藏峪</h1>
 <p class="lead">皖北平原上的石灰岩「岛状残丘」</p>
 <p>宿州皇藏峪地处安徽省宿州市萧县东南，皖苏鲁豫四省交界。坐标约 117°03′—117°06′E，34°—34°06′N；最高峰平顶山海拔 389 m。在淮海四片里属皖北，塑造它的营力是岩溶与残丘。它的现状是：国家森林公园；暖温带落叶阔叶林保护区。到现场去，皇藏峪国家森林公园（4A），连霍、京台高速可达，距徐州约 60 km。</p>
@@ -206,6 +242,24 @@ footer p{text-indent:0;line-height:1.6}
 <h2>来源</h2>
 <p class="ref">本页数据出自 2 条公开来源：<a href="https://www.huaibei.gov.cn/zwgk/public/15/62422061.html" target="_blank" rel="noopener">淮北市人民政府：淮北市主体功能区规划（相山 342.8 m、平原占 85%、寒武—奥陶系山丘、灰岩矿）</a>；<a href="https://baike.com/wikiid/2419688114020123307" target="_blank" rel="noopener">快懂百科：安徽相山国家森林公园（岛状剥蚀残丘、1018.52 公顷、石灰土与淋溶褐土）</a>。</p>
 <p class="ref">相邻的实例还有<a href="#c/huangcangyu">皇藏峪</a>、<a href="#c/mangdangshan">芒砀山</a>，点顶排短名卡片即可切过去看。</p>
+<p class="plain">以上观察点与数字均取自公开来源，未做现场复核；实地情况会随季节、水位与工程进展变化，出发前请再核对一次。本页共 6 组实测数据，全部标注来源。</p></div><div class="casebody wrap" id="case-bagongshan"><p class="kicker">皖北 · 岩溶与残丘 · 八公山</p>
+<h1>八公山</h1>
+<p class="lead">一座藏着 8.4 亿年生命化石的低山，被侵蚀切成石林</p>
+<p>八公山地处安徽省淮南市（距市中心约 20 km，淮河在园区西北环山而流）。园区面积 120 km²；主峰白鹗山海拔 240 m（一说 241.2 m）。在淮海四片里属皖北，塑造它的营力是岩溶与残丘。它的现状是：国家地质公园（2001 年获批）、国家 4A 级旅游区；华北地台寒武系剖面典型产地。到现场去，八公山国家地质公园（4A），有忘情谷、石门潭、乐涧套、石林等景点；八公山地质博物馆陈列淮南虫化石</p>
+<p>八公山是淮河中游一片由四十余座山峰叠成的低山丘陵，主峰白鹗山海拔 240 米。它的名气一半来自地质、一半来自历史：园区出露寒武系下、中统剖面，1978 年在这里发现的「淮南虫」化石把后生动物起源史提前了两亿年；同时流水剥蚀与溶蚀把裸露的石灰岩切成绵延数平方公里的石林。一座山，把「地层—古生物—岩溶」三件事叠在了一起。</p>
+<h2>到哪看，看什么</h2>
+<p>岩溶现场，看岩性、溶蚀痕迹，以及残丘与周围平原之间的高差。进八公山地质博物馆看镇馆之宝：淮南虫化石与鱼龙、海百合化石，8.4 亿年前的生命痕迹是被这里写进地球生命史的。到石林区走一段：裸露的白云质灰岩被风雨切成高 1.5—5 米、绵延数平方公里的石林，石壁上一处天然显出一个似有似无的「佛」字——长江以北难得一见。沿忘情谷（谷长 2.3 km、落差 160 余米）看两侧：古木生于石中、石柱群生，谷涧是流水侵蚀下切出来的，石与树互为依存。到石门潭看河流侵蚀陡崖：两山交而中豁成门，门高 20 丈、潭深数尺，临石门是立壁千仞的侵蚀陡崖——流水沿节理把山「切开」。上白鹗山（241 m）俯瞰：淮河在园区西北环山迂回，山水相依的格局在山顶一览无余，低山丘陵与平原的界线也在这里。</p>
+<h2>背后的原理</h2>
+<p>可溶岩的溶蚀与残留。控制变量是岩性与厚度、水的溶蚀力、透水性与流动性。落到这一处，机制是这样的：物质：寒武系厚层碳酸盐岩（白云质灰岩、角砾岩）抗蚀性强，是石林与陡崖的岩性基础。抬升与剥蚀：区域抬升使石灰岩出露，流水沿节理、断层剥蚀下切，形成石林、侵蚀陡崖、峡谷。溶蚀叠加：碳酸盐岩遇水溶蚀，与物理风化共同塑造奇峰异石。地层意义：寒武系剖面未变质、露头好，是研究华北地台演化与南、北寒武系对比的关键剖面。</p>
+<h2>这些数字在说什么</h2>
+<p>8.4 亿年淮南虫，后生动物起源的「心跳」，把生命史往前推了两亿年。30 万 m² 石林，长江以北罕见的岩溶景观，是侵蚀加溶蚀的成品。120 km² 园区，一座低山把地层、古生物、岩溶、文化叠在一处。与皇藏峪、相山对照，同是皖北碳酸盐岩丘陵：八公山以石林与化石见长，皇藏峪以残丘森林、相山以采石见长。</p>
+<h2>实测数据</h2>
+<p>面积与主峰，园区面积 120 km²；主峰白鹗山海拔 240 m（一说 241.2 m），其余山峰 100—200 m——低山丘陵，山脉南北走向。地质年代，以形成于约 5.4—5.1 亿年前的寒武系下、中统剖面为特色；淮南虫化石生命形态在 8.4 亿年前——将后生动物起源史提前两亿年。石林，石林占地约 30 万 m²，出露高度 1.5—5 m，由厚层状白云质灰岩、白云质角砾岩组成，地质年代约 7 亿年——长江以北罕见，具岩石学、构造学、气候学研究意义。地层厚度，寒武系凤台组至土坝组总厚 1081—1235 m；晚前寒武系总厚 923.83 m——具「北型南相」过渡性质。文化遗产，淝水之战古战场、「一人得道鸡犬升天」典故出处；豆腐发源地——楚汉文化重镇。次生林，天然次生林面积 10 余 km²，乔木高大、树种繁多——林密、石奇、泉古、水秀。</p>
+<h2>争议与口径</h2>
+<p>主峰海拔有 240 m 与 241.2 m 两说；石林地质年代约 7 亿年、淮南虫约 8.4 亿年；寒武系总厚 1081—1235 m。本站并列。</p>
+<h2>来源</h2>
+<p class="ref">本页数据出自 2 条公开来源：<a href="https://baike.baidu.com/item/%E5%85%AB%E5%85%AC%E5%B1%B1%E5%9B%BD%E5%AE%B6%E5%9C%B0%E8%B4%A8%E5%85%AC%E5%9B%AD/10119930" target="_blank" rel="noopener">百度百科：八公山国家地质公园（120 km²、白鹗山 240 m、寒武系剖面、淮南虫 8.4 亿年、石林）</a>；<a href="https://www.bagongshan.gov.cn/zjbgs/msgj/8134939.html" target="_blank" rel="noopener">淮南市八公山区人民政府：石林（30 万 m²、出露 1.5—5 m、白云质灰岩、约 7 亿年）</a>。</p>
+<p class="ref">相邻的实例还有<a href="#c/huangcangyu">皇藏峪</a>、<a href="#c/huaibei-xiangshan">相山</a>，点顶排短名卡片即可切过去看。</p>
 <p class="plain">以上观察点与数字均取自公开来源，未做现场复核；实地情况会随季节、水位与工程进展变化，出发前请再核对一次。本页共 6 组实测数据，全部标注来源。</p></div><div class="casebody wrap" id="case-daigu"><p class="kicker">鲁南 · 方山与崮 · 蒙阴岱崮地貌</p>
 <h1>蒙阴岱崮地貌</h1>
 <p class="lead">戴平顶帽的山——中国第五大造型地貌</p>
@@ -296,7 +350,43 @@ footer p{text-indent:0;line-height:1.6}
 <h2>来源</h2>
 <p class="ref">本页数据出自 3 条公开来源：<a href="http://www.weishan.gov.cn/art/2013/11/2/art_23101_1084232.html" target="_blank" rel="noopener">微山县人民政府：鲁南明珠微山湖（断裂带上的湖、黄河夺淮成湖、湖面后退约 7 km）</a>；<a href="https://shandong-chorography.org/database/f063/section/39/article/42" target="_blank" rel="noopener">山东地情档案：南四湖（1266 km²、3.17 万 km²、二级坝、下级湖 664 km²）</a>；<a href="http://wr.shandong.gov.cn/sdhzz/hhgk/201802/t20180224_3177448.html" target="_blank" rel="noopener">山东省水利厅：南四湖（1225 km²、储水量 19.3 亿 m³、四湖组成）</a>。</p>
 <p class="ref">相邻的实例还有<a href="#c/hongze-lake">洪泽湖</a>、<a href="#c/feihuanghe">废黄河</a>，点顶排短名卡片即可切过去看。</p>
-<p class="plain">以上观察点与数字均取自公开来源，未做现场复核；实地情况会随季节、水位与工程进展变化，出发前请再核对一次。本页共 7 组实测数据，全部标注来源。</p></div><div class="casebody wrap" id="case-lankao-sand"><p class="kicker">豫东 · 风沙与黄土 · 兰考—民权黄泛风沙地</p>
+<p class="plain">以上观察点与数字均取自公开来源，未做现场复核；实地情况会随季节、水位与工程进展变化，出发前请再核对一次。本页共 7 组实测数据，全部标注来源。</p></div><div class="casebody wrap" id="case-yishui-cave"><p class="kicker">鲁南 · 岩溶与残丘 · 沂水地下大峡谷</p>
+<h1>沂水地下大峡谷</h1>
+<p class="lead">一条深切近百米的喀斯特裂隙，被地下水掏成江北第一长洞</p>
+<p>沂水地下大峡谷地处山东省临沂市沂水县院东头镇（龙岗山下）。坐标约 35°43′N，118°33′E；洞体全长 6100 m、已开发 3100 m。在淮海四片里属鲁南，塑造它的营力是岩溶与残丘。它的现状是：国家 5A 级旅游景区、国家地质公园；号称「中国江北第一长洞」。到现场去，山东地下大峡谷（5A），洞内可漂流；与萤火虫水洞同属沂蒙地下奇观核心景区</p>
+<p>沂水地下大峡谷是发育在寒武纪灰岩里的一条巨型溶洞。它沿 290°—320° 方向的喀斯特裂隙延展，由一条西北—东南走向的巨大裂隙溶蚀而成，形成于约 0.65 亿至 2.3 亿年前。洞体全长 6100 米、已开发 3100 米，峡谷深切近百米、两壁如削，洞内还有一条四季长流的地下暗河——北方溶洞里这样规模的暗河很少见。</p>
+<h2>到哪看，看什么</h2>
+<p>岩溶现场，看岩性、溶蚀痕迹，以及残丘与周围平原之间的高差。进洞口顺步道下到洞底：两侧灰岩峭壁夹出一条窄谷，抬头只见一线天，深切近百米的尺度在刚进洞时就压过来。沿已开发的 3100 米洞道看溶蚀形态：石笋、石柱、石幔沿裂隙生长，钟乳景观百余处——全是地下水沿碳酸盐岩溶蚀、沉淀的成品。到地下暗河段看水流：暗河四季长流、水量充沛，地下河瀑布在北方溶洞里很少见；漂流的 1000 米河道就借了这股水势。看洞体走向与区域构造的关系：溶洞沿 290°—320° 方向延展，正是区域裂隙的方向，洞是「裂隙被水溶通」的证据。出洞后上龙岗山顶乘滑道车俯瞰：2800 米滑道落差 50 余米，从山顶看下去，整座龙岗山就是这片地下奇观的「盖子」。</p>
+<h2>背后的原理</h2>
+<p>可溶岩的溶蚀与残留。控制变量是岩性与厚度、水的溶蚀力、透水性与流动性。落到这一处，机制是这样的：物质基础：寒武纪厚层灰岩（碳酸盐岩）是可溶岩，是溶洞的岩性前提。裂隙控形：一条 NW—SE 走向的巨大构造裂隙，决定了溶洞的延伸方向（290°—320°）。溶蚀成腔：地下水沿裂隙溶蚀、扩大，把裂隙掏成洞腔，再下切成深切峡谷。暗河塑造：地下河长期搬运、溶蚀，形成暗河与地下河瀑布，并沉积钟乳景观。现代利用：借暗河水势开发漂流，借山体高差开发滑道，把地质奇观转为旅游。</p>
+<h2>这些数字在说什么</h2>
+<p>6100 m / 开发 3100 m，江北第一长洞，规模由裂隙长度决定。0.65—2.3 亿年，溶洞的形成跨越的地质时间尺度。深切近百米，裂隙被水「切」出的深度，与地表峡谷同理。与岱崮、熊耳山对照，同是鲁南碳酸盐岩：岱崮被差异风化削成方山、熊耳山被地震崩塌、这里被水溶成洞。</p>
+<h2>实测数据</h2>
+<p>洞长，洞体全长 6100 m，已开发 3100 m，号称「中国江北第一长洞」——中国特大型著名溶洞之一。形成时代，形成于约 0.65 亿—2.3 亿年前的喀斯特裂隙——由一条 NW—SE 走向巨大裂隙溶蚀发育。峡谷形态，峡谷深切近百米，两壁如削，宽处逾百米、窄处仅容一人，成微缩版「地下三峡」——洞内分九大景段、百余处景观。地下暗河，暗河漫长曲折、水量充沛、四季长流，地下河瀑布壮观；开发的 1000 m 漂流获基尼斯「中国最长溶洞漂流」认证——北方溶洞内实属罕见。温度，洞内常年 17—18℃，冬暖夏凉——接待不受季节天气影响。辅助设施，2800 m 管轨电动滑道车（落差 50 余米）；总体规划占地 32 km²——山顶俯瞰全景。</p>
+<h2>争议与口径</h2>
+<p>洞长 6100 m、开发 3100 m 为通用口径；形成时代约 0.65—2.3 亿年前；景区等级有 4A（沂水县政府页）与 5A（临沂市农业农村局页）两说。本站并列。</p>
+<h2>来源</h2>
+<p class="ref">本页数据出自 2 条公开来源：<a href="http://yishui.gov.cn/info/7966/184624.htm" target="_blank" rel="noopener">沂水县人民政府：地下大峡谷景区（6100 m、开发 3100 m、0.65—2.3 亿年、江北第一长洞、暗河漂流）</a>；<a href="https://nyj.linyi.gov.cn/info/1045/49915.htm" target="_blank" rel="noopener">临沂市农业农村局：地心奇境·沂蒙茶韵之旅（地下大峡谷 5A、32 km²、中国最长溶洞漂流）</a>。</p>
+<p class="ref">相邻的实例还有<a href="#c/daigu">岱崮</a>、<a href="#c/baodugu-xionger">熊耳山</a>，点顶排短名卡片即可切过去看。</p>
+<p class="plain">以上观察点与数字均取自公开来源，未做现场复核；实地情况会随季节、水位与工程进展变化，出发前请再核对一次。本页共 6 组实测数据，全部标注来源。</p></div><div class="casebody wrap" id="case-guimengding"><p class="kicker">鲁南 · 构造与新构造 · 蒙山龟蒙顶</p>
+<h1>蒙山龟蒙顶</h1>
+<p class="lead">山东第二高峰，是一座 27 亿年岩层「长」起来的断块山</p>
+<p>蒙山龟蒙顶地处山东省临沂市平邑县（蒙阴、平邑交界），沂蒙山世界地质公园核心。坐标约 35°33′N，117°51′E；主峰龟蒙顶海拔 1156 m（一说 1159 m）。在淮海四片里属鲁南，塑造它的营力是构造与新构造。它的现状是：沂蒙山世界地质公园（2019）核心区、国家 5A 级旅游景区；山东省第二高峰。到现场去，沂蒙山龟蒙景区（5A），盘山公路可直达峰顶；步游西路（东蒙古道）为古登山道</p>
+<p>蒙山龟蒙顶海拔 1156 米，是山东省第二高峰，与泰山遥遥相望，人称「岱宗之亚」。它的山体由 27—25 亿年前多期侵入的花岗质岩石构成，是「蒙山岩套」的命名地。燕山运动起它缓慢隆升，整体表现为断块单斜山地——南坡沿蒙山断裂强烈翘起、北坡缓。一座山，把华北早期陆壳的「年龄」和「抬升」都写在了岩里。</p>
+<h2>到哪看，看什么</h2>
+<p>构造现场，找直线状的地形痕迹，以及地层被错开的位置。从平邑县走盘山公路直达龟蒙顶：车窗外几百米内从平原拔起为千米高峰，断块单斜山的「南陡北缓」在盘山路上能直接感受。上顶看蒙山断裂山麓线：龟蒙顶南侧与平邑—费县平原相接，山麓线沿蒙山断裂发育、清晰平直，断裂把山与平原「切开」的边界就在脚下。到「中国瀑布」看新构造运动的痕迹：河谷被构造抬升切成三级陡峭台阶，总体落差 80 余米，瀑布是抬升加水流下切的合痕。看花岗岩象形石（群龟探海、鹰窝峰）：两组垂直节理切割加球状风化，把坚硬花岗岩雕成龟形、峰林——风化沿节理「雕刻」的现场。在龟蒙顶西北侧远望老寿星山体浮雕：218 米高的山体雕刻依山就势，提醒你「龟」形象形石正是蒙山花岗岩风化的招牌产物。</p>
+<h2>背后的原理</h2>
+<p>内力给出的舞台：抬升、下降、错动。控制变量是构造运动的方向与速率、断裂格局。落到这一处，机制是这样的：基底：27—25 亿年前多期花岗质岩浆侵入，构成稳定的变质结晶基底（蒙山岩套）。抬升：中生代燕山运动起隆升，喜马拉雅与新构造运动接力，使蒙山「长」到现今高度。断块单斜：沿蒙山断裂强烈翘起，整体南陡北缓，呈断块单斜山地。风化雕形：花岗岩节理加球状风化，塑造群龟探海等象形石与峰林。与沂沭断裂带的区别：蒙山在沂沭断裂带以西的鲁西地块，抬升以断块为主，不同于郯庐带的走滑发震。</p>
+<h2>这些数字在说什么</h2>
+<p>1156 m / 山东第二，鲁西隆起的最高点，与泰山隔空相望。27—25 亿年岩套，华北早期陆壳的「年龄」直接写在山体里。断块单斜、南陡北缓，一条蒙山断裂，给出山的骨架与坡形。与郯城地震、云台山串联，山东的构造山各有来路：蒙山是断块抬升、云台山是断块海蚀岛、郯城是走滑发震。</p>
+<h2>实测数据</h2>
+<p>海拔，龟蒙顶海拔 1156 m（一说 1159 m），山东省第二高峰——峰体穹隆形，似神龟伏卧，称「岱宗之亚」。岩性，由 27—25 亿年前新太古代至古元古代多期侵入岩构成（片麻状花岗闪长岩、二长花岗岩等），是「蒙山岩套」命名地——华北早期地壳演化的关键记录。构造形态，整体断块单斜山地；南坡沿蒙山断裂强烈翘起、向东北斜倾，南陡北缓；多组南东向断层横切山体——新构造运动快速抬升形成瀑布（中国瀑布落差 80 余米）。园区规模，沂蒙山世界地质公园面积 1804.76 km²，地跨蒙阴、平邑；蒙山山脉海拔 200 m 以上总长约 120 km、宽约 40 km——2019 年入选世界地质公园。象形石，花岗岩风化形成群龟探海、神龟拜寿、鹰窝峰等；龟蒙顶西北侧 218 m 老寿星山体浮雕（世界最大山体雕刻）——球状风化加节理切割的成品。高程，公园拥有超 27.5 亿年地质记录；海拔超 1000 m 山峰近 10 座——短距离内形成约 1000 m 高差。</p>
+<h2>争议与口径</h2>
+<p>海拔有 1156 m 与 1159 m 两说；公园面积 1804.76 km²、蒙山山脉长约 120 km 宽约 40 km；中国瀑布落差 80 余米。本站并列。</p>
+<h2>来源</h2>
+<p class="ref">本页数据出自 2 条公开来源：<a href="https://baike.baidu.com/item/%E6%B2%82%E8%92%99%E5%B1%B1%E9%BE%9F%E8%92%99%E6%99%AF%E5%8C%BA/13785947" target="_blank" rel="noopener">百度百科：沂蒙山龟蒙景区（1156 m、山东第二高峰、蒙山岩套命名地、27—25 亿年侵入岩、5A）</a>；<a href="https://yms.linyi.gov.cn/zjgy/yqfb.htm" target="_blank" rel="noopener">临沂沂蒙山世界地质公园管理局：园区分布（1804.76 km²、蒙山岩套、龟蒙顶 1156 m）</a>。</p>
+<p class="ref">相邻的实例还有<a href="#c/tancheng-fault">郯城地震</a>、<a href="#c/daigu">岱崮</a>，点顶排短名卡片即可切过去看。</p>
+<p class="plain">以上观察点与数字均取自公开来源，未做现场复核；实地情况会随季节、水位与工程进展变化，出发前请再核对一次。本页共 6 组实测数据，全部标注来源。</p></div><div class="casebody wrap" id="case-lankao-sand"><p class="kicker">豫东 · 风沙与黄土 · 兰考—民权黄泛风沙地</p>
 <h1>兰考—民权黄泛风沙地</h1>
 <p class="lead">一条改道走了，留下一片会跑的沙</p>
 <p>兰考—民权黄泛风沙地地处河南省开封市兰考县、商丘市民权县一带（黄河故道沿线）。兰考沙化土地 40 万亩；民权林场经营面积 6.9 万亩。在淮海四片里属豫东，塑造它的营力是风沙与黄土。它的现状是：已系统治理；河南民权黄河故道国家生态公园 2015 年获批（2877 公顷）。到现场去，兰考东坝头（原铜瓦厢决口处）、民权黄河故道国家生态公园／国家湿地公园。</p>
@@ -350,7 +440,25 @@ footer p{text-indent:0;line-height:1.6}
 <h2>来源</h2>
 <p class="ref">本页数据出自 2 条公开来源：<a href="https://baike.baidu.com/item/%E8%8A%92%E7%A0%80%E5%B1%B1/65600897" target="_blank" rel="noopener">百度百科：芒砀山（156.8 m、20 余座山丘、燕山中晚期、剥蚀残丘、采石矿坑建地质公园）</a>；<a href="https://henan.sina.com.cn/shangqiu/tourism/2017-02-07/detail-ifyafcyx7284887.shtml" target="_blank" rel="noopener">新浪河南：永城芒砀山（山丘构成、剥蚀残丘地貌、古代泽国与黄河淤埋）</a>。</p>
 <p class="ref">相邻的实例还有<a href="#c/huangcangyu">皇藏峪</a>、<a href="#c/huaibei-xiangshan">相山</a>，点顶排短名卡片即可切过去看。</p>
-<p class="plain">以上观察点与数字均取自公开来源，未做现场复核；实地情况会随季节、水位与工程进展变化，出发前请再核对一次。本页共 8 组实测数据，全部标注来源。</p></div></section><section class="view" id="v-prins">
+<p class="plain">以上观察点与数字均取自公开来源，未做现场复核；实地情况会随季节、水位与工程进展变化，出发前请再核对一次。本页共 8 组实测数据，全部标注来源。</p></div><div class="casebody wrap" id="case-kaifeng-river"><p class="kicker">豫东 · 流水与冲积平原 · 开封地上悬河与城摞城</p>
+<h1>开封地上悬河与城摞城</h1>
+<p class="lead">河床比城里地面高 11 米，地下还摞着六座城</p>
+<p>开封地上悬河与城摞城地处河南省开封市（城北约 10 km 柳园口黄河大堤一带）。柳园口黄河段河床底部比龙亭公园地面高 11.49 m；开封地下叠压六座古城。在淮海四片里属豫东，塑造它的营力是流水与冲积平原。它的现状是：「地上悬河」与「城摞城」两种奇观同现于一城；黄河悬河文化园在建。到现场去，开封黄河悬河文化展示馆、柳园口黄河大堤；龙亭公园、开封城墙可看「城摞城」剖面</p>
+<p>开封城北的黄河大堤上，柳园口段的河床底部比城里龙亭公园的地面还高 11.49 米——河在高处流，城在低处住，这就是「地上悬河」。地上悬河之下，黄河历次泛滥的泥沙又把战国到清代的六座开封城一层层淤埋在地下 3—10 多米处，形成「城摞城」。一座城，把黄河的「地上」与「地下」两面都演给了你。</p>
+<h2>到哪看，看什么</h2>
+<p>河流留下的痕迹，先看地面高低，再看土质的粗细与分选，然后找人工改造的部分。到开封城北约 10 公里的柳园口黄河大堤上站一站：北边黄河在奔流，南边村庄树木像落在凹坑里，大堤南侧的杨树梢都比堤顶低——河真的在「头顶」流。看大堤上的高程提示（或实地对比）：柳园口河床底部比龙亭公园地面高 11.49 米，这一数字把「悬河」量化成了 11 米多的落差。到龙亭公园一带想象地下：脚下方圆 8 米内埋着北宋东京城，再往下是唐汴州城，战国大梁城在最深处约 10 米——城是「长高」的，不是「沉下去」的。在开封城墙西门大梁门北侧看古马道遗迹：三层古马道上下相叠，以立体形式展示「城摞城」的层序，是考古挖出来的直接证据。走中山路想中轴线：脚下 8 米是北宋御街，明清路面叠在它上面，从宋到今轴线方向一丝未动——叠城却不改道，是开封特有的执拗。</p>
+<h2>背后的原理</h2>
+<p>河流的搬运与堆积。控制变量是流量、比降、含沙量与基面。淮海平原的主体由它堆出。落到这一处，机制是这样的：泥沙来源：黄河过郑州进入平原，流速骤减、泥沙沉积，河床越淤越高。悬河形成：人们沿岸筑堤约束洪水，河床与堤防随淤积越抬越高，终成「河高于城」。城摞城：黄河屡次决溢，裹挟泥沙淹没古城，新城在原址上重建，旧城被淤埋于地下。轴线守恒：历代重建基本沿用同一份城市规划，城墙、城门、道路层层叠压而方位不变。当代：人民治黄已实现多年伏秋大汛未决口，但河床仍在淤高，悬河之势未根本解除。</p>
+<h2>这些数字在说什么</h2>
+<p>11.49 m，悬河的可量化落差：河底比城里地面高出一个三层楼。六座城，城不是沉的，是埋上来的——黄河泥沙一层层把城摞高。年均淤高 3 cm，悬河是「进行时」，河床仍在与大堤赛跑。与废黄河、兰考沙地串联，同一条黄河：开封被淤埋成悬河、豫东故道成沙荒、苏北故道成田。</p>
+<h2>实测数据</h2>
+<p>悬河高差，柳园口黄河段河床底部比龙亭公园地面高 11.49 m（1982 年洪水位比龙亭高 11.49 m；1985 年主槽河底平均比龙亭高 8.18 m）——河高于城的悬河景观。大堤临背差，郊区大马圈大堤临背河高差 6.98 m；开封县埽街 6.7 m；兰考付楼 6.4 m——悬河段堤内外高差。城摞城，地下叠压六座古城：战国魏大梁城（深约 10 m）、唐汴州城（约 10 m）、北宋东京城（约 8 m）、金汴京城（约 6 m）、明开封城（约 5 m）、清中前期开封城（约 3 m）——「城摞城、墙摞墙、路摞路、门摞门、马道摞马道」。淤积速率，1960—1985 年观测，黑岗口、柳园口主槽分别淤高 0.8、0.73 m；夹河滩断面年均淤高 3 cm——河床持续抬升，与大堤赛跑。中轴线，中山路地下 8 m 即北宋御街，明、清路面依次叠压其上，南北中轴线千年未变——层层叠加而轴线不动。</p>
+<h2>争议与口径</h2>
+<p>悬河高差有「1982 洪水位比龙亭高 11.49 m」与「1985 主槽河底比龙亭高 8.18 m」两种口径（前者为洪水位、后者为河底平均）；城摞城层位深度各源略有差异。本站并列。</p>
+<h2>来源</h2>
+<p class="ref">本页数据出自 2 条公开来源：<a href="https://baike.baidu.com/view/2628555.htm" target="_blank" rel="noopener">百度百科：城摞城（柳园口河床比龙亭高 11.49 m、地下六座城、路摞路马道摞马道）</a>；<a href="http://www.hndsfz.cn/szfzg/2023/03-23/67543.html" target="_blank" rel="noopener">河南党史方志网：开封黄河悬河（1985 主槽河底比龙亭高 8.18 m、年均淤高 3 cm、临背差）</a>。</p>
+<p class="ref">相邻的实例还有<a href="#c/feihuanghe">废黄河</a>、<a href="#c/lankao-sand">兰考沙地</a>，点顶排短名卡片即可切过去看。</p>
+<p class="plain">以上观察点与数字均取自公开来源，未做现场复核；实地情况会随季节、水位与工程进展变化，出发前请再核对一次。本页共 5 组实测数据，全部标注来源。</p></div></section><section class="view" id="v-prins">
 <section class="hero wrap">
 <h1>原理：营力、过程与产物</h1>
 <p class="lead">地貌形态是内外地质营力相互作用的结果：内力给出骨架与高差，外力按各自的规律去削、去搬、去堆。本页把 9 类营力各讲一节，每节只回答四件事：控制变量、作用过程、留下的产物、野外怎么认。其中「方山与崮」「人为地貌」两类是本站依据淮海实例补充的——它们恰是淮海最值得看的东西。</p>
@@ -370,19 +478,19 @@ footer p{text-indent:0;line-height:1.6}
 
 <h2>9 类营力系统</h2>
 <h3 id="fluvial">流水与冲积平原</h3>
-<p>流水用侵蚀、搬运、堆积三种动作塑造地表。河流的搬运与堆积。控制变量是流量、比降、含沙量与基面。淮海平原的主体由它堆出。淮海境内这一类的实例是<a href="#c/feihuanghe">废黄河（黄河故道）</a>、<a href="#c/lincangcang-plain">临郯苍平原（沂沭河冲积平原）</a>、<a href="#c/shangqiu-gudao">商丘黄河故道与天沐湖</a>。</p>
+<p>流水用侵蚀、搬运、堆积三种动作塑造地表。河流的搬运与堆积。控制变量是流量、比降、含沙量与基面。淮海平原的主体由它堆出。淮海境内这一类的实例是<a href="#c/feihuanghe">废黄河（黄河故道）</a>、<a href="#c/lincangcang-plain">临郯苍平原（沂沭河冲积平原）</a>、<a href="#c/shangqiu-gudao">商丘黄河故道与天沐湖</a>、<a href="#c/kaifeng-river">开封地上悬河与城摞城</a>。</p>
 <h3 id="lacustrine">湖泊与沼泽</h3>
 <p>静水把泥沙慢慢放下，湖盆边淤积边再造平原。静水环境的蓄积与沉积。控制变量是湖盆形态、来水来沙、水位与出口。淮海境内这一类的实例是<a href="#c/hongze-lake">洪泽湖</a>、<a href="#c/weishan-lake">南四湖（微山湖）</a>。</p>
 <h3 id="coastal">海岸与河口</h3>
-<p>波浪与潮流和来沙角力，岸线随泥沙进退。河流供沙与海洋动力的角力。控制变量是来沙量、波浪与潮流强度、潮差。淮海境内这一类的实例是<a href="#c/yancheng-tidal">盐城黄海湿地与辐射沙洲</a>。</p>
+<p>波浪与潮流和来沙角力，岸线随泥沙进退。河流供沙与海洋动力的角力。控制变量是来沙量、波浪与潮流强度、潮差。淮海境内这一类的实例是<a href="#c/yancheng-tidal">盐城黄海湿地与辐射沙洲</a>、<a href="#c/qinshan-island">秦山岛</a>、<a href="#c/liyashan">蛎岈山（牡蛎礁）</a>。</p>
 <h3 id="aeolian">风沙与黄土</h3>
 <p>风吹起沙、搬动沙、放下沙，落尘积成黄土。风的吹扬、搬运与堆积。控制变量是风速、起沙条件、物源（粉沙）与植被覆盖。淮海境内这一类的实例是<a href="#c/lankao-sand">兰考—民权黄泛风沙地</a>。</p>
 <h3 id="karst">岩溶与残丘</h3>
-<p>水溶蚀可溶岩，留下峰林、溶洞与残丘。可溶岩的溶蚀与残留。控制变量是岩性与厚度、水的溶蚀力、透水性与流动性。淮海境内这一类的实例是<a href="#c/huangcangyu">宿州皇藏峪</a>、<a href="#c/huaibei-xiangshan">淮北相山</a>、<a href="#c/mangdangshan">永城芒砀山</a>。</p>
+<p>水溶蚀可溶岩，留下峰林、溶洞与残丘。可溶岩的溶蚀与残留。控制变量是岩性与厚度、水的溶蚀力、透水性与流动性。淮海境内这一类的实例是<a href="#c/huangcangyu">宿州皇藏峪</a>、<a href="#c/huaibei-xiangshan">淮北相山</a>、<a href="#c/bagongshan">八公山</a>、<a href="#c/yishui-cave">沂水地下大峡谷</a>、<a href="#c/mangdangshan">永城芒砀山</a>。</p>
 <h3 id="slope">斜坡与重力</h3>
 <p>重力让坡上的物质下移，崩塌滑坡泥石流都是它的动作。一切「往下掉」的过程：崩塌、滑坡、崩塌堆积。控制变量是坡度、岩体结构与强度、水与震动。淮海境内这一类的实例是<a href="#c/baodugu-xionger">枣庄熊耳山与抱犊崮</a>。</p>
 <h3 id="tectonic">构造与新构造</h3>
-<p>抬升、下降与错动直接给出山地和盆地的骨架。内力给出的舞台：抬升、下降、错动。控制变量是构造运动的方向与速率、断裂格局。淮海境内这一类的实例是<a href="#c/luoma-lake">骆马湖</a>、<a href="#c/yuntai-mountain">连云港云台山</a>、<a href="#c/tancheng-fault">郯城—郯庐断裂带与 1668 年大地震</a>。</p>
+<p>抬升、下降与错动直接给出山地和盆地的骨架。内力给出的舞台：抬升、下降、错动。控制变量是构造运动的方向与速率、断裂格局。淮海境内这一类的实例是<a href="#c/luoma-lake">骆马湖</a>、<a href="#c/yuntai-mountain">连云港云台山</a>、<a href="#c/tancheng-fault">郯城—郯庐断裂带与 1668 年大地震</a>、<a href="#c/guimengding">蒙山龟蒙顶</a>。</p>
 <h3 id="mesa">方山与崮</h3>
 <p>软硬岩层叠置再抬升，差异风化削出顶平身陡的桌状山。平缓岩层 + 软硬相间 + 抬升，被差异风化削出「顶平、身陡、麓缓」的方山。中国第五大造型地貌。淮海境内这一类的实例是<a href="#c/daigu">蒙阴岱崮地貌</a>。</p>
 <h3 id="anthropogenic">人为地貌</h3>
@@ -428,11 +536,11 @@ footer p{text-indent:0;line-height:1.6}
 </section><section class="view" id="v-time">
 <section class="hero wrap">
 <h1>时间轴：淮海的地貌是怎么被一步步改写的</h1>
-<p class="lead">淮海今天的模样，是几件事叠加出来的结果：燕山期的构造抬升给出了山与残丘，黄河的南徙与北归改写了水系，郯庐断裂带的地震重塑了山体，近现代的人类又用采矿与治水直接改动了地表。下面这条时间轴把这 13 个锚点串起来，每一个都能在实地找到落点。</p>
+<p class="lead">淮海今天的模样，是几件事叠加出来的结果：燕山期的构造抬升给出了山与残丘，黄河的南徙与北归改写了水系，郯庐断裂带的地震重塑了山体，近现代的人类又用采矿与治水直接改动了地表。下面这条时间轴把这 15 个锚点串起来，每一个都能在实地找到落点。</p>
 </section>
 
 <div class="wrap">
-<h2>13 个时间锚点</h2>
+<h2>15 个时间锚点</h2>
 <p><b>约 5 亿年前</b>，寒武纪灰岩沉积——岱崮、熊耳山等崮与岩溶地貌的物质基础。崮与方山的物质基础，就此埋下。</p>
 <p><b>约 1.37 亿—0.8 亿年前</b>，燕山运动中晚期——芒砀山、相山等石灰岩残丘形成的构造背景。这一次抬升，决定了后来残丘能站多高。</p>
 <p><b>1128 年</b>，黄河南徙夺淮开始——黄河改由泗水入淮，淮河水系开始被打乱。水系从这里开始被改写。</p>
@@ -446,6 +554,8 @@ footer p{text-indent:0;line-height:1.6}
 <p><b>1958—1960 年</b>，南四湖二级坝、骆马湖嶂山闸——南四湖分上下级湖；骆马湖成为滞洪水库。湖被水坝切成两级，水位改由闸门调度。</p>
 <p><b>2009—2010 年</b>，潘安湖采煤塌陷区治理启动——「四位一体」综合整治，塌陷地变为国家湿地公园。人为营力正式介入地表形态。</p>
 <p><b>2019 年</b>，盐城黄海湿地列入世界遗产——中国黄渤海候鸟栖息地第一期，填补滨海湿地类遗产空白。这片海岸从「资源」变成了「遗产」。</p>
+<p><b>约 8.4 亿年前</b>，淮南虫化石（八公山）——将后生动物起源史提前两亿年，是地球生命演化的关键证据。这一次抬升，决定了后来残丘能站多高。</p>
+<p><b>27—25 亿年前</b>，蒙山岩套侵入岩——华北早期陆壳的记录，后经燕山运动隆升为龟蒙顶。构造带的一次活动，同时改了山体与湖盆。</p>
 
 
 <h2>年代口径的处理</h2>
@@ -455,7 +565,7 @@ footer p{text-indent:0;line-height:1.6}
 </section><section class="view" id="v-srcs">
 <section class="hero wrap">
 <h1>来源清单</h1>
-<p class="lead">本站所有实测数字都出自下列公开来源，共 44 条，按实例排列。采集方式是按营力类别逐类联网检索，优先采用期刊论文、政府部门、景区官方与主流媒体的实测数据；同一指标出现多个数值时并列呈现，不做加权也不做换算。</p>
+<p class="lead">本站所有实测数字都出自下列公开来源，共 56 条，按实例排列。采集方式是按营力类别逐类联网检索，优先采用期刊论文、政府部门、景区官方与主流媒体的实测数据；同一指标出现多个数值时并列呈现，不做加权也不做换算。</p>
 </section>
 
 <div class="wrap">
@@ -472,10 +582,16 @@ footer p{text-indent:0;line-height:1.6}
 <p class="ref">3 条：<a href="https://hbxq.suqian.gov.cn/hbxq/lmcs/200912/ae01e5bc1a34431ea77332ec5a76da74.shtml" target="_blank" rel="noopener">宿迁市湖滨新区：骆马湖（375 km²、湖底 18—21 m、构造湖与形成过程）</a>；<a href="https://baike.baidu.com/item/%E9%AA%86%E9%A9%AC%E6%B9%96/1125413" target="_blank" rel="noopener">百度百科：骆马湖（296 km²、郯庐断裂带凹陷洼地、地层与治理）</a>；<a href="https://baike.com/wikiid/7246171569981325368" target="_blank" rel="noopener">快懂百科：骆马湖（成因类型、形成过程、郯庐断裂带晚第四纪活动）</a>。</p>
 <h3><a href="#c/yuntai-mountain">连云港云台山</a>　苏北　江苏省连云港市，南云台山（花果山）</h3>
 <p class="ref">3 条：<a href="https://zrzy.jiangsu.gov.cn/lyg/gtzx/ztzl/aqbmgz/200904/t20090421_16521.htm" target="_blank" rel="noopener">江苏省自然资源厅：连云港市地质灾害（云台山变质岩、玉女峰 625.3 m、坡度与灾害）</a>；<a href="http://yts.lyg.gov.cn/ytsfjqgwh/wlyt/content/9c2ddb92-468b-42b5-bc1d-a1438912dd94.html" target="_blank" rel="noopener">连云港市云台山景区：江苏最高峰就在花果山（624.4 m 正式高程）</a>；<a href="https://baike.com/wikiid/634076218144577112" target="_blank" rel="noopener">快懂百科：玉女峰（断块山组成、前古生代变质岩系、古海蚀地貌）</a>。</p>
+<h3><a href="#c/qinshan-island">秦山岛</a>　苏北　江苏省连云港市赣榆区青口镇东侧海州湾（近岸基岩岛屿）</h3>
+<p class="ref">2 条：<a href="https://baike.baidu.com/item/%E7%A7%A6%E5%B1%B1%E5%B2%9B/2056937" target="_blank" rel="noopener">百度百科：秦山岛（0.1928 km²、石英岩大理岩、海蚀崖 20—50 m、神路 2.6 km、将军石、4A）</a>；<a href="https://m.lygwfly.com/pd.jsp?desc=true&amp;mid=3&amp;pid=204&amp;sortName=name" target="_blank" rel="noopener">连云港秦山岛风景区：海蚀崖、神路连岛坝尺度与岩性（景区资料）</a>。</p>
+<h3><a href="#c/liyashan">蛎岈山（牡蛎礁）</a>　苏北　江苏省南通市海门区东灶港东北约 4 海里的黄海中（南黄海潮间带）</h3>
+<p class="ref">2 条：<a href="https://baike.baidu.com/item/%E8%9B%8E%E5%B2%88%E5%B1%B1%E7%94%9F%E6%80%81%E6%97%85%E6%B8%B8/8614945" target="_blank" rel="noopener">百度百科：蛎岈山生态旅游（潮间带活体牡蛎礁、6600 亩、1700 余年、国家级海洋公园）</a>；<a href="https://baike.baidu.com/item/%E6%B5%B7%E9%97%A8%E4%B8%9C%E7%81%B6%E6%B8%AF/1612056" target="_blank" rel="noopener">百度百科：海门东灶港（蛎岈山方位、6600 亩、平均高出海平面 4.5 m、中国唯一活体牡蛎礁）</a>。</p>
 <h3><a href="#c/huangcangyu">宿州皇藏峪</a>　皖北　安徽省宿州市萧县东南，皖苏鲁豫四省交界</h3>
 <p class="ref">2 条：<a href="https://baike.baidu.com/view/110277.htm" target="_blank" rel="noopener">百度百科：皇藏峪（389 m、寒武—奥陶系石灰岩、岛状残丘、古树）</a>；<a href="https://baike.sogou.com/v175400117.htm" target="_blank" rel="noopener">搜狗百科：安徽皇藏峪国家森林公园（2273.33 公顷、剥蚀低山丘陵、木本植物 199 种）</a>。</p>
 <h3><a href="#c/huaibei-xiangshan">淮北相山</a>　皖北　安徽省淮北市相山区，相山峪中</h3>
 <p class="ref">2 条：<a href="https://www.huaibei.gov.cn/zwgk/public/15/62422061.html" target="_blank" rel="noopener">淮北市人民政府：淮北市主体功能区规划（相山 342.8 m、平原占 85%、寒武—奥陶系山丘、灰岩矿）</a>；<a href="https://baike.com/wikiid/2419688114020123307" target="_blank" rel="noopener">快懂百科：安徽相山国家森林公园（岛状剥蚀残丘、1018.52 公顷、石灰土与淋溶褐土）</a>。</p>
+<h3><a href="#c/bagongshan">八公山</a>　皖北　安徽省淮南市（距市中心约 20 km，淮河在园区西北环山而流）</h3>
+<p class="ref">2 条：<a href="https://baike.baidu.com/item/%E5%85%AB%E5%85%AC%E5%B1%B1%E5%9B%BD%E5%AE%B6%E5%9C%B0%E8%B4%A8%E5%85%AC%E5%9B%AD/10119930" target="_blank" rel="noopener">百度百科：八公山国家地质公园（120 km²、白鹗山 240 m、寒武系剖面、淮南虫 8.4 亿年、石林）</a>；<a href="https://www.bagongshan.gov.cn/zjbgs/msgj/8134939.html" target="_blank" rel="noopener">淮南市八公山区人民政府：石林（30 万 m²、出露 1.5—5 m、白云质灰岩、约 7 亿年）</a>。</p>
 <h3><a href="#c/daigu">蒙阴岱崮地貌</a>　鲁南　山东省临沂市蒙阴县岱崮镇（沂蒙山区腹地）</h3>
 <p class="ref">3 条：<a href="https://www.igsnrr.cas.cn/cbkx/kpyd/kcsj/kksj/202009/t20200910_5693307.html" target="_blank" rel="noopener">中国科学院地理科学与资源研究所：崮——一种新的地貌类型（灰岩 4—32 m、崖壁 10—100 m、产状小于 10°）</a>；<a href="http://www.mengyin.gov.cn/info/1575/28387.htm" target="_blank" rel="noopener">蒙阴县人民政府：岱崮地貌（中国第五大造型地貌、核心区 180.7 km²、30 崮）</a>；<a href="https://baike.baidu.com/item/%E5%B2%B1%E5%B4%AE%E5%9C%B0%E8%B2%8C/7141872" target="_blank" rel="noopener">百度百科：岱崮地貌（演化阶段、分布 7 县区、成因与价值）</a>。</p>
 <h3><a href="#c/tancheng-fault">郯城—郯庐断裂带与 1668 年大地震</a>　鲁南　山东省临沂市郯城县、临沭、莒南一带（断裂带中国境内长 2400 多公里）</h3>
@@ -486,12 +602,18 @@ footer p{text-indent:0;line-height:1.6}
 <p class="ref">2 条：<a href="https://baike.baidu.com/item/%E4%B8%B4%E9%83%AF%E8%8B%8D%E5%B9%B3%E5%8E%9F" target="_blank" rel="noopener">百度百科：临郯苍平原（山东省三大平原之一、沂沭河冲积、扇状平原、沂沭断裂带）</a>；<a href="https://baike.sogou.com/v63165375.htm" target="_blank" rel="noopener">搜狗百科：沂沭河（含沙量、输沙量、历史洪水 1730 年）</a>。</p>
 <h3><a href="#c/weishan-lake">南四湖（微山湖）</a>　鲁南　山东省济宁市微山县一带，苏鲁两省交界</h3>
 <p class="ref">3 条：<a href="http://www.weishan.gov.cn/art/2013/11/2/art_23101_1084232.html" target="_blank" rel="noopener">微山县人民政府：鲁南明珠微山湖（断裂带上的湖、黄河夺淮成湖、湖面后退约 7 km）</a>；<a href="https://shandong-chorography.org/database/f063/section/39/article/42" target="_blank" rel="noopener">山东地情档案：南四湖（1266 km²、3.17 万 km²、二级坝、下级湖 664 km²）</a>；<a href="http://wr.shandong.gov.cn/sdhzz/hhgk/201802/t20180224_3177448.html" target="_blank" rel="noopener">山东省水利厅：南四湖（1225 km²、储水量 19.3 亿 m³、四湖组成）</a>。</p>
+<h3><a href="#c/yishui-cave">沂水地下大峡谷</a>　鲁南　山东省临沂市沂水县院东头镇（龙岗山下）</h3>
+<p class="ref">2 条：<a href="http://yishui.gov.cn/info/7966/184624.htm" target="_blank" rel="noopener">沂水县人民政府：地下大峡谷景区（6100 m、开发 3100 m、0.65—2.3 亿年、江北第一长洞、暗河漂流）</a>；<a href="https://nyj.linyi.gov.cn/info/1045/49915.htm" target="_blank" rel="noopener">临沂市农业农村局：地心奇境·沂蒙茶韵之旅（地下大峡谷 5A、32 km²、中国最长溶洞漂流）</a>。</p>
+<h3><a href="#c/guimengding">蒙山龟蒙顶</a>　鲁南　山东省临沂市平邑县（蒙阴、平邑交界），沂蒙山世界地质公园核心</h3>
+<p class="ref">2 条：<a href="https://baike.baidu.com/item/%E6%B2%82%E8%92%99%E5%B1%B1%E9%BE%9F%E8%92%99%E6%99%AF%E5%8C%BA/13785947" target="_blank" rel="noopener">百度百科：沂蒙山龟蒙景区（1156 m、山东第二高峰、蒙山岩套命名地、27—25 亿年侵入岩、5A）</a>；<a href="https://yms.linyi.gov.cn/zjgy/yqfb.htm" target="_blank" rel="noopener">临沂沂蒙山世界地质公园管理局：园区分布（1804.76 km²、蒙山岩套、龟蒙顶 1156 m）</a>。</p>
 <h3><a href="#c/lankao-sand">兰考—民权黄泛风沙地</a>　豫东　河南省开封市兰考县、商丘市民权县一带（黄河故道沿线）</h3>
 <p class="ref">3 条：<a href="https://huanghe.china.com.cn/2021-06/30/content_41605077.htm" target="_blank" rel="noopener">中国网黄河频道：豫东黄河故道 百年绿色传奇（1855 改道、兰考被埋村庄 63 个、沙荒 59 万亩）</a>；<a href="https://www.hnsjb.cn/content/ysyd/20180516/705270.html" target="_blank" rel="noopener">河南手机报：黄河故道变奏曲（沙荒 59 万亩、泛风沙地 130 万亩、兰考林木覆盖率 1.6%）</a>；<a href="https://henan.china.com.cn/news/2020-06/17/content_41189539.htm" target="_blank" rel="noopener">中国网：河南兰考从防沙治沙走向脱贫奔小康（沙丘 261 个、最大 9.9 m、治理成效）</a>。</p>
 <h3><a href="#c/shangqiu-gudao">商丘黄河故道与天沐湖</a>　豫东　河南省商丘市，西起民权、东至虞城，横跨民权／宁陵／梁园／虞城</h3>
 <p class="ref">2 条：<a href="https://baike.baidu.com/view/185344.html" target="_blank" rel="noopener">百度百科：商丘市黄河故道（134 km、故堤高出地面 13 m、天沐湖 12000 亩）</a>；<a href="https://epaper.sqrb.com.cn/old/sqrb/html/2014-06/20/content_245169.htm" target="_blank" rel="noopener">商丘日报：黄河故道过商丘（天沐湖水域 800 公顷、水深 2 m 左右、林果业）</a>。</p>
 <h3><a href="#c/mangdangshan">永城芒砀山</a>　豫东　河南省商丘市永城市芒山镇，豫鲁苏皖四省交界</h3>
 <p class="ref">2 条：<a href="https://baike.baidu.com/item/%E8%8A%92%E7%A0%80%E5%B1%B1/65600897" target="_blank" rel="noopener">百度百科：芒砀山（156.8 m、20 余座山丘、燕山中晚期、剥蚀残丘、采石矿坑建地质公园）</a>；<a href="https://henan.sina.com.cn/shangqiu/tourism/2017-02-07/detail-ifyafcyx7284887.shtml" target="_blank" rel="noopener">新浪河南：永城芒砀山（山丘构成、剥蚀残丘地貌、古代泽国与黄河淤埋）</a>。</p>
+<h3><a href="#c/kaifeng-river">开封地上悬河与城摞城</a>　豫东　河南省开封市（城北约 10 km 柳园口黄河大堤一带）</h3>
+<p class="ref">2 条：<a href="https://baike.baidu.com/view/2628555.htm" target="_blank" rel="noopener">百度百科：城摞城（柳园口河床比龙亭高 11.49 m、地下六座城、路摞路马道摞马道）</a>；<a href="http://www.hndsfz.cn/szfzg/2023/03-23/67543.html" target="_blank" rel="noopener">河南党史方志网：开封黄河悬河（1985 主槽河底比龙亭高 8.18 m、年均淤高 3 cm、临背差）</a>。</p>
 
 
 <h2>使用边界</h2>
@@ -507,7 +629,7 @@ footer p{text-indent:0;line-height:1.6}
 else if(matchMedia('(prefers-color-scheme:dark)').matches)document.documentElement.setAttribute('data-theme','dark');})();
 function toggleTheme(){var c=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
 document.documentElement.setAttribute('data-theme',c);localStorage.setItem('hhgmtheme',c);}
-var CASES=["hongze-lake","feihuanghe","yancheng-tidal","panan-lake","luoma-lake","yuntai-mountain","huangcangyu","huaibei-xiangshan","daigu","tancheng-fault","baodugu-xionger","lincangcang-plain","weishan-lake","lankao-sand","shangqiu-gudao","mangdangshan"];
+var CASES=["hongze-lake","feihuanghe","yancheng-tidal","panan-lake","luoma-lake","yuntai-mountain","qinshan-island","liyashan","huangcangyu","huaibei-xiangshan","bagongshan","daigu","tancheng-fault","baodugu-xionger","lincangcang-plain","weishan-lake","yishui-cave","guimengding","lankao-sand","shangqiu-gudao","mangdangshan","kaifeng-river"];
 function route(){
   var h=decodeURIComponent(location.hash.replace(/^#\/?/,''));
   var view='cases',caso=CASES[0];

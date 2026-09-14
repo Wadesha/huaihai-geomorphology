@@ -22,10 +22,13 @@ MODULES = [('cases', '实例'), ('prins', '原理'),
 SHORT = {
     'hongze-lake': '洪泽湖', 'feihuanghe': '废黄河', 'yancheng-tidal': '盐城滩涂',
     'panan-lake': '潘安湖', 'luoma-lake': '骆马湖', 'yuntai-mountain': '云台山',
-    'huangcangyu': '皇藏峪', 'huaibei-xiangshan': '相山', 'daigu': '岱崮',
-    'tancheng-fault': '郯城地震', 'baodugu-xionger': '熊耳山',
+    'qinshan-island': '秦山岛', 'liyashan': '蛎岈山',
+    'huangcangyu': '皇藏峪', 'huaibei-xiangshan': '相山', 'bagongshan': '八公山',
+    'daigu': '岱崮', 'tancheng-fault': '郯城地震', 'baodugu-xionger': '熊耳山',
     'lincangcang-plain': '沂沭平原', 'weishan-lake': '南四湖',
+    'yishui-cave': '地下大峡', 'guimengding': '龟蒙顶',
     'lankao-sand': '兰考沙地', 'shangqiu-gudao': '商丘故道', 'mangdangshan': '芒砀山',
+    'kaifeng-river': '开封悬河',
 }
 
 
