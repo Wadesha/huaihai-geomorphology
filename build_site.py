@@ -7,7 +7,7 @@
 正文仍是连续散文，数字逐条标注来源，冲突口径并列不合并。
 """
 import os, html
-from site_data import (REGION, AGENTS, CASES, CONFUSIONS, TIMELINE)
+from site_data import (REGION, AGENTS, CASES, CONFUSIONS, TIMELINE, AGENT_EN)
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, 'docs')
@@ -22,11 +22,13 @@ MODULES = [('cases', '实例'), ('prins', '原理'),
 SHORT = {
     'hongze-lake': '洪泽湖', 'feihuanghe': '废黄河', 'yancheng-tidal': '盐城滩涂',
     'panan-lake': '潘安湖', 'luoma-lake': '骆马湖', 'yuntai-mountain': '云台山',
-    'qinshan-island': '秦山岛', 'liyashan': '蛎岈山',
+    'qinshan-island': '秦山岛', 'liyashan': '蛎岈山', 'xinghua-duotian': '垛田',
     'huangcangyu': '皇藏峪', 'huaibei-xiangshan': '相山', 'bagongshan': '八公山',
+    'jingshanxia': '荆山峡',
     'daigu': '岱崮', 'tancheng-fault': '郯城地震', 'baodugu-xionger': '熊耳山',
     'lincangcang-plain': '沂沭平原', 'weishan-lake': '南四湖',
     'yishui-cave': '地下大峡', 'guimengding': '龟蒙顶',
+    'sishui-quanlin': '泉林', 'liangshan-paleolake': '水泊梁山',
     'lankao-sand': '兰考沙地', 'shangqiu-gudao': '商丘故道', 'mangdangshan': '芒砀山',
     'kaifeng-river': '开封悬河',
 }
@@ -77,6 +79,7 @@ main{padding-bottom:10px}
 h1{font-size:23px;line-height:1.3;margin:0 0 .3em;letter-spacing:.01em}
 h2{font-size:17.5px;line-height:1.35;margin:1.15em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
 h3{font-size:15.5px;line-height:1.4;margin:.95em 0 .3em}
+.en{font-size:.72em;color:var(--muted);font-weight:400;font-family:Georgia,"Times New Roman",serif;margin-left:.45em;letter-spacing:.01em;white-space:nowrap}
 h4{font-size:14.5px;margin:.8em 0 .25em}
 p{margin:0 0 .55em;text-indent:2em;text-align:justify}
 p.lead,p.kicker,p.plain{text-indent:0}
@@ -190,11 +193,12 @@ def body_prins():
         rel = [c for c in CASES if c['agent'] == aid]
         tail = (f'淮海境内这一类的实例是{case_links(rel)}。'
                 if rel else '这一类在淮海境内没有选入的实例，把它保留在原理层，是为了在读邻区或更远地方时不缺参照。')
-        blocks += f'<h3 id="{aid}">{E(name)}</h3>\n<p>{E(chap)}。{E(ctrl)}{tail}</p>\n'
+        blocks += f'<h3 id="{aid}">{E(name)} <span class="en">{E(AGENT_EN.get(aid, ""))}</span></h3>\n<p>{E(chap)}。{E(ctrl)}{tail}</p>\n'
 
     return f'''
 <section class="hero wrap">
 <h1>原理：营力、过程与产物</h1>
+<p class="kicker">A field guide to the landforms of China&rsquo;s Huaihai region: nine geologic agents, twenty-two real sites, and how to read them in the field.</p>
 <p class="lead">地貌形态是内外地质营力相互作用的结果：内力给出骨架与高差，外力按各自的规律去削、去搬、去堆。本页把 {len(AGENTS)} 类营力各讲一节，每节只回答四件事：控制变量、作用过程、留下的产物、野外怎么认。其中「方山与崮」「人为地貌」两类是本站依据淮海实例补充的——它们恰是淮海最值得看的东西。</p>
 </section>
 
@@ -255,7 +259,7 @@ def case_inner(c):
     nfact = len(c['facts'])
 
     sec = []
-    sec.append(f'<p class="kicker">{E(c["region"])} · {E(a[1])} · {name}</p>')
+    sec.append(f'<p class="kicker">{E(c["region"])} · {E(a[1])} <span class="en">{E(AGENT_EN.get(c["agent"], ""))}</span> · {E(name)}</p>')
     sec.append(f'<h1>{name}</h1>')
     sec.append(f'<p class="lead">{E(c["sub"])}</p>')
     sec.append(f'<p>{name}地处{E(c["place"])}。{coord_clause(c["coord"])}在淮海四片里属{E(c["region"])}，塑造它的营力是{E(a[1])}。它的现状是：{E(c["status"])}。到现场去，{E(c["access"])}</p>')
