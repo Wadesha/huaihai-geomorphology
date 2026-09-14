@@ -180,14 +180,14 @@ def body_home():
     agents = ''
     for a in AGENTS:
         rel = [c for c in CASES if c['agent'] == a[0]]
-        tail = (f'淮海境内归入这一类的实例有{case_links(rel)}。'
+        tail = (f'淮海境内符合这一规律的实例是{case_links(rel)}。'
                 if rel else '这一类在淮海境内没有选入的实例，把它保留在原理层，是为了在读邻区或更远地方时不缺参照。')
         agents += f'<h3>{E(a[1])}</h3>\n<p>{E(a[2])}。{E(a[4])}{tail}</p>\n'
 
     return f'''
 <section class="hero wrap">
 <h1>淮海大地上，{len(CASES)} 处能亲手核对的现场</h1>
-<p class="lead">这是一份给实地用的地貌指南：把淮海常见的地貌现象归成 {len(AGENTS)} 类营力，每类落到几处现存、可到达的具体地点；每处都给出坐标与可达性、现场观察要点、成因机制、实测数字与来源。黄河、淮河、沂沭泗三条水系在这里交汇改写，黄泛平原、鲁中南低山丘陵、苏北滨海平原三种大地貌在这里接合——不带任何教材，带上这份清单去现场就够了。</p>
+<p class="lead">这是一份给实地用的地貌指南：把淮海常见的地貌现象归成 {len(AGENTS)} 类营力，每类落到几处现存、可到达的具体地点；每处都给出坐标与可达性、现场观察要点、成因机制、实测数字与来源。黄河、淮河、沂沭泗三条水系在这里交汇改写，黄泛平原、鲁中南低山丘陵、苏北滨海平原三种大地貌在这里接合——带上这份清单去现场就够了。</p>
 <p>{len(CASES)} 处地点覆盖苏北、皖北、鲁南、豫东四片；所有实测数字出自 {nsrc} 条公开来源，逐条标注出处；同一指标的多个口径并列呈现，不换算、不取单值；查不到来源的数字一概不写。</p>
 </section>
 
@@ -282,7 +282,7 @@ def case_inner(c):
     name = E(c['name'])
 
     obs = E(OBS_LEAD.get(c['agent'], '到了现场，以下几处值得逐一对照。')) + ''.join(E(x) for x in c['observe'])
-    mech = ''.join(E(x) for x in c['mech'])
+    mech = f'{E(a[4])}落到这一处，机制是这样的：' + ''.join(E(x) for x in c['mech'])
     mean = ''.join(f'{E(k)}，{E(v)}。' for k, v in c['meaning'])
     facts = ''.join(f'{E(k)}，{E(v)}——{E(n)}。' for k, v, n in c['facts'])
     srcs = '；'.join(f'<a href="{E(u)}" target="_blank" rel="noopener">{E(t)}</a>'
@@ -296,7 +296,7 @@ def case_inner(c):
     sec.append(f'<p class="kicker">{E(c["region"])} · {E(a[1])} · {name}</p>')
     sec.append(f'<h1>{name}</h1>')
     sec.append(f'<p class="lead">{E(c["sub"])}</p>')
-    sec.append(f'<p>{name}地处{E(c["place"])}。{coord_clause(c["coord"])}在淮海四片里属{E(c["region"])}，成因上归入{E(a[1])}一类。它的现状是：{E(c["status"])}。到现场去，{E(c["access"])}</p>')
+    sec.append(f'<p>{name}地处{E(c["place"])}。{coord_clause(c["coord"])}在淮海四片里属{E(c["region"])}，塑造它的营力是{E(a[1])}。它的现状是：{E(c["status"])}。到现场去，{E(c["access"])}</p>')
     sec.append(f'<p>{E(c["summary"])}</p>')
 
     sec.append('<h2>现场能看到什么</h2>')
