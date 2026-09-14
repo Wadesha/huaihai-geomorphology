@@ -3,19 +3,22 @@
 用法：python build_site.py   输出至 ./docs（GitHub Pages 目录）
 数据与渲染分离：本文件只负责把 site_data.py 渲染成 docs/index.html。
 
-版式：单页标签式。顶排短名卡片切换模块，实例模块内有第二排地点短名卡片；
-正文仍是连续散文，数字逐条标注来源，冲突口径并列不合并。
+版式：单页标签式（总览 / 原理 / 实例 / 判定 / 时间轴 / 来源）；
+实例页按「到哪看 → 看什么 → 背后的原理 → 现场怎么确认」四段成篇，
+正文为连续散文，不引实测数值、不用表格与卡片网格。
 """
 import os, html
-from site_data import (REGION, AGENTS, CASES, CONFUSIONS, TIMELINE, AGENT_EN)
+from site_data import (REGION, AGENTS, CASES, CONFUSIONS, TIMELINE,
+                       AGENT_EN, FRAMES, HOME, FIELD_ORDER, FIELD_TOOLS,
+                       FIELD_BOUND, TIMELINE_NOTE)
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, 'docs')
-AGENT_D = {a[0]: a for a in AGENTS}
+AGENT_D = {a['id']: a for a in AGENTS}
 REGION_ORDER = ['苏北', '皖北', '鲁南', '豫东']
 E = html.escape
 
-MODULES = [('cases', '实例'), ('prins', '原理'),
+MODULES = [('home', '总览'), ('prins', '原理'), ('cases', '实例'),
            ('field', '判定'), ('time', '时间轴'), ('srcs', '来源')]
 
 # 每处实例的卡片短名（顶排卡片空间有限，只放 2—4 字）
@@ -33,15 +36,10 @@ SHORT = {
     'kaifeng-river': '开封悬河',
 }
 
-
-def short(c):
-    return SHORT.get(c['slug'], c['name'][:3])
-
-
-# 每处实例的一行英文短注（极少量英文：只出现在实例标题下方与实例模块导语）
+# 每处实例的一行英文短注（只作地名对照，不进中文正文逻辑）
 EN = {
     'hongze-lake': 'Hongze Lake — a "hanging" lake raised by silt and dikes',
-    'feihuanghe': 'The Abandoned Yellow River — a dead river that still divides two drainage systems',
+    'feihuanghe': 'The Abandoned Yellow River — a dead channel that still divides two drainage systems',
     'yancheng-tidal': 'Yancheng Coastal Wetlands and the Radial Sand Ridges',
     'panan-lake': "Pan'an Lake — a coal-subsidence basin turned wetland",
     'luoma-lake': 'Luoma Lake — a fault-basin lake',
@@ -49,24 +47,28 @@ EN = {
     'qinshan-island': 'Qinshan Island — a tombolo in the making',
     'liyashan': 'Liya Mountain — an oyster reef rising at low tide',
     'xinghua-duotian': 'Duotian of Xinghua — raised fields built out of the marsh',
-    'huangcangyu': 'Huangcangyu — limestone hills and caves north of the Huaibei plain',
+    'huangcangyu': 'Huangcangyu — limestone hills north of the Huaibei plain',
     'huaibei-xiangshan': 'Xiangshan, Huaibei — a karst outlier on the plain',
     'bagongshan': 'Bagong Mountain — limestone hills at the middle Huai',
-    'jingshanxia': 'Jingshan Gorge and Tushan — where the Huai River squeezes between two mountains',
+    'jingshanxia': 'Jingshan Gorge and Tushan — where the Huai squeezes between two mountains',
     'daigu': 'The Dai-Gu — tabletop mountains of Mengyin',
-    'tancheng-fault': 'Tancheng and the Tan-Lu Fault — the great earthquake of 1668',
+    'tancheng-fault': 'Tancheng and the Tan-Lu Fault — the great earthquake of the early Qing',
     'baodugu-xionger': "Baodugu and Xiong'er Mountain — a gu and its collapsed twin",
     'lincangcang-plain': 'The Lin-Tan-Cang Plain — alluvium laid down by the Yi and Shu rivers',
     'weishan-lake': 'The Nansi Lakes — a chain of shallow lakes on a subsiding line',
     'yishui-cave': 'The Underground Grand Canyon of Yishui — a karst cave river',
     'guimengding': 'Guimengding — the roof of the Mengshan range',
     'sishui-quanlin': 'Quanlin Springs — where the Si River is born',
-    'liangshan-paleolake': 'Liangshan and the Paleolake — where an 800-li lake silted away',
+    'liangshan-paleolake': 'Liangshan and the Paleolake — where a great lake silted away',
     'lankao-sand': 'Lankao Sand Fields — dunes left on the old floodplain',
     'shangqiu-gudao': 'The Old Channel at Shangqiu and Tianmu Lake',
     'mangdangshan': 'Mangdangshan — low karst hills on the plain',
     'kaifeng-river': 'Kaifeng — the hanging river, and cities buried under cities',
 }
+
+
+def short(c):
+    return SHORT.get(c['slug'], c['name'][:3])
 
 
 def css():
@@ -85,7 +87,7 @@ body{margin:0;background:var(--bg);color:var(--ink);
   font-size:15px;line-height:1.62;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none;border-bottom:1px solid var(--rule)}
 a:hover{color:var(--accent);border-color:var(--accent)}
-.wrap{max-width:960px;margin:0 auto;padding:0 18px}
+.wrap{max-width:900px;margin:0 auto;padding:0 18px}
 nav{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line);
   padding-bottom:5px}
 .topbar{max-width:1000px;margin:0 auto;display:flex;align-items:center;gap:14px;height:38px;padding:0 18px;flex-wrap:wrap}
@@ -109,22 +111,21 @@ main{padding-bottom:10px}
 .hero{padding:16px 0 4px}
 h1{font-size:23px;line-height:1.3;margin:0 0 .3em;letter-spacing:.01em}
 h2{font-size:17.5px;line-height:1.35;margin:1.15em 0 .5em;padding-bottom:.25em;border-bottom:1px solid var(--line)}
-h3{font-size:15.5px;line-height:1.4;margin:.95em 0 .3em}
-.en{font-size:.72em;color:var(--muted);font-weight:400;font-family:Georgia,"Times New Roman",serif;margin-left:.45em;letter-spacing:.01em;white-space:nowrap}
+h3{font-size:15.5px;line-height:1.4;margin:1em 0 .3em}
 h4{font-size:14.5px;margin:.8em 0 .25em}
+.en{font-size:.72em;color:var(--muted);font-weight:400;font-family:Georgia,"Times New Roman",serif;margin-left:.45em;letter-spacing:.01em;white-space:nowrap}
 p{margin:0 0 .55em;text-indent:2em;text-align:justify}
 p.lead,p.kicker,p.plain{text-indent:0}
 p.lead{color:var(--muted);font-size:15px;line-height:1.6;margin-bottom:.7em}
 p.kicker{font-size:12.5px;color:var(--muted);margin-bottom:.25em}
 p.en{font-size:13px;color:var(--muted);font-style:italic;font-family:Georgia,"Times New Roman",serif;text-indent:0;margin:-0.1em 0 .6em;line-height:1.45}
 p.plain{color:var(--muted);font-size:13.5px}
-.small{font-size:13px;color:var(--muted)}
 p.ref{font-size:13px;text-indent:0;color:var(--muted);line-height:1.5;word-break:break-word}
 p.ref a{border-bottom-style:dotted}
 .en-tag{font-size:12px;color:var(--muted);font-style:italic;font-family:Georgia,"Times New Roman",serif;white-space:nowrap}
 @media(max-width:760px){.en-tag{display:none}}
 footer{border-top:1px solid var(--line);margin-top:24px;padding:14px 0 26px;color:var(--muted);font-size:12.5px}
-footer .wrap{max-width:960px}
+footer .wrap{max-width:900px}
 footer p{text-indent:0;line-height:1.6}
 """
 
@@ -138,10 +139,10 @@ document.documentElement.setAttribute('data-theme',c);localStorage.setItem('hhgm
 var CASES=%s;
 function route(){
   var h=decodeURIComponent(location.hash.replace(/^#\\/?/,''));
-  var view='cases',caso=CASES[0];
-  if(h.slice(0,2)==='c/'){caso=h.slice(2);}
-  else if(h) view=h, caso=null;
-  if(!document.getElementById('v-'+view)) view='cases';
+  var view='home',caso=null;
+  if(h.slice(0,2)==='c/'){view='cases';caso=h.slice(2);}
+  else if(h){view=h;}
+  if(!document.getElementById('v-'+view)) view='home';
   if(view==='cases'&&(caso===null||CASES.indexOf(caso)<0)) caso=CASES[0];
   var vs=document.querySelectorAll('.view');
   for(var i=0;i<vs.length;i++) vs[i].classList.remove('on');
@@ -171,8 +172,8 @@ def json_dumps(arr):
 def shell(body):
     mod_cards = ''
     for k, n in MODULES:
-        cls = ' class="on"' if k == 'cases' else ''
-        dest = 'c/' if k == 'cases' else k
+        cls = ' class="on"' if k == 'home' else ''
+        dest = 'home' if k == 'home' else k
         mod_cards += (f'<button data-v="{k}"{cls} '
                       f'onclick="location.hash=\'{dest}\'">{E(n)}</button>')
     case_cards = ''.join(
@@ -182,7 +183,7 @@ def shell(body):
 <html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>淮海地貌现场手册</title>
-<meta name="description" content="淮海地貌现场手册：{len(AGENTS)} 类营力原理 + {len(CASES)} 个淮海现存实例 + 野外判定对照。">
+<meta name="description" content="淮海地貌现场手册：{len(AGENTS)} 类营力的原理，{len(CASES)} 处淮海现存地点的到哪看、看什么与判定方法。">
 <style>{css()}</style></head><body>
 <nav>
 <div class="topbar"><span class="brand">淮海地貌现场手册</span><span class="en-tag">A field guide to the landforms of the Huaihai region</span><span class="spacer"></span>
@@ -192,7 +193,7 @@ def shell(body):
 </nav>
 <main>{body}</main>
 <footer><div class="wrap">
-<p>数字均出自标注的公开来源，多口径并列不换算；实地情况以现场为准。</p>
+<p>本手册写的是位置、现象、过程与判据；实地情况会随季节、水位与工程进展变化，出发前请再确认一次当下的通行与开放情况。</p>
 </div></footer>
 <script>{js()}</script>
 </body></html>"""
@@ -202,38 +203,74 @@ def case_links(cs, sep='、'):
     return sep.join(f'<a href="#c/{c["slug"]}">{E(c["name"])}</a>' for c in cs)
 
 
-def place_brief(c):
-    """place 字段常自带（…）补充说明；索引行里只留主地名，避免双重括号。"""
-    return c['place'].split('（')[0].strip() or c['place']
+# ─────────────────────────────────────────── 总览
+
+def body_home():
+    how = ''
+    for title, paras in HOME['how']:
+        how += f'<h3>{E(title)}</h3>\n' + ''.join(f'<p>{E(x)}</p>\n' for x in paras)
+
+    reg = ''
+    for r in REGION_ORDER:
+        cs = [c for c in CASES if c['region'] == r]
+        if not cs:
+            continue
+        reg += f'<p>{E(r)}，{len(cs)} 处：{case_links(cs)}。</p>\n'
+
+    ag = ''
+    for a in AGENTS:
+        cs = [c for c in CASES if c['agent'] == a['id']]
+        tail = f'这一类的实例是{case_links(cs)}。' if cs else ''
+        ag += f'<p>{E(a["name"])}，{E(a["oneline"])}——{E(a["ctrl"])}{tail}</p>\n'
+
+    return f'''
+<section class="hero wrap">
+<h1>淮海地貌现场手册</h1>
+<p class="kicker">A field guide to the landforms of the Huaihai region: where to go, what to look at, and why it looks that way.</p>
+<p class="lead">{E(HOME['lead'])}</p>
+<p>{E(REGION['note'])}</p>
+</section>
+
+<div class="wrap">
+<h2>怎么用这份手册</h2>
+{how}
+
+<h2>四片地貌，各有各的性格</h2>
+{reg}
+<p>四片的差别不是行政区划的差别，而是营力组合的差别。往苏北走，你看的是水与沙的账本；往皖北走，你看的是平原上剩下的几块硬骨头；往鲁南走，你看的是断块、崮与断裂带；往豫东走，你看的是河道搬走之后留下的痕迹。同一类地貌在不同片区里的性格不同，这正是比较的价值。</p>
+
+<h2>{len(AGENTS)} 类营力，一句话一类</h2>
+{ag}
+
+<h2>读它的顺序</h2>
+<p>{E(HOME['close'])}</p>
+</div>
+'''
 
 
 # ─────────────────────────────────────────── 原理
 
 def body_prins():
-    frames = [
-        ('内力与外力',
-         '内力（构造运动、火山活动）制造高差与格局，是「舞台」；外力（风化、流水、岩溶、风、海浪）削平高差，是「演员」。淮海是典型的外力主导区：鲁中南的构造隆起提供了碎屑与高差，黄河、淮河、沂沭泗再把碎屑一遍遍铺成平原。'),
-        ('成因、形态与年代',
-         '看一处地貌，要回答三个问题：什么营力造成的（成因）、现在长什么样（形态）、什么时候造成的（年代）。三者缺一，解释就不完整。淮海尤其如此——同样叫「湖」，洪泽湖是淤塞成的，骆马湖是构造成的，潘安湖是人为塌陷成的，形态相近而来历全不相同。'),
-        ('规模等级与地域分带',
-         '地貌是有等级的：大地貌如黄泛平原、鲁中南低山丘陵，中地貌如故道、冲积扇、湖盆，小地貌如沙丘、溶洞、裂谷。同一营力在不同气候与岩性条件下表现完全不同——同为石灰岩，皖北削成残丘，鲁南却成崮。'),
-        ('时间是隐藏变量',
-         '速率乘以时间等于结果。盐城滩涂是每年约两万亩地成陆，废黄河是七百年淤高四到六米，潘安湖塌陷是几十年的事。动手解释之前先算量级，很多看似「不可能」的现象，其实只是「时间不够」。'),
-    ]
-    fr = ''.join(f'<h3>{E(t)}</h3>\n<p>{E(d)}</p>\n' for t, d in frames)
+    fr = ''
+    for t, p1, p2 in FRAMES:
+        fr += f'<h3>{E(t)}</h3>\n<p>{E(p1)}</p>\n<p>{E(p2)}</p>\n'
 
     blocks = ''
-    for aid, name, chap, color, ctrl in AGENTS:
-        rel = [c for c in CASES if c['agent'] == aid]
-        tail = (f'淮海境内这一类的实例是{case_links(rel)}。'
-                if rel else '这一类在淮海境内没有选入的实例，把它保留在原理层，是为了在读邻区或更远地方时不缺参照。')
-        blocks += f'<h3 id="{aid}">{E(name)} <span class="en">{E(AGENT_EN.get(aid, ""))}</span></h3>\n<p>{E(chap)}。{E(ctrl)}{tail}</p>\n'
+    for a in AGENTS:
+        rel = [c for c in CASES if c['agent'] == a['id']]
+        tail = (f'在淮海，这一类的实例是{case_links(rel)}。把它们放在一起看，能比较出同一个机制在不同条件下的差别。'
+                if rel else '这一类在淮海境内没有选入的实例，保留在原理层，是为了读邻区或更远的地方时不缺参照。')
+        body = ''.join(f'<p>{E(x)}</p>\n' for x in a['body'])
+        blocks += (f'<h3 id="{a["id"]}">{E(a["name"])} <span class="en">{E(AGENT_EN.get(a["id"], ""))}</span></h3>\n'
+                   f'<p class="lead">{E(a["oneline"])}。{E(a["ctrl"])}</p>\n'
+                   f'{body}'
+                   f'<p>{tail}</p>\n'
+                   f'<p>现场怎么认：{E(a["marks"])}</p>\n')
 
     return f'''
 <section class="hero wrap">
-<h1>原理：营力、过程与产物</h1>
-<p class="kicker">A field guide to the landforms of China&rsquo;s Huaihai region: nine geologic agents, twenty-two real sites, and how to read them in the field.</p>
-<p class="lead">地貌形态是内外地质营力相互作用的结果：内力给出骨架与高差，外力按各自的规律去削、去搬、去堆。本页把 {len(AGENTS)} 类营力各讲一节，每节只回答四件事：控制变量、作用过程、留下的产物、野外怎么认。其中「方山与崮」「人为地貌」两类是本站依据淮海实例补充的——它们恰是淮海最值得看的东西。</p>
+<h1>原理：营力是怎么做出形态的</h1>
+<p class="lead">地貌形态是内外地质营力相互作用的结果：内力给出骨架与高差，外力按各自的规律去削、去搬、去堆。这一页把 {len(AGENTS)} 类营力各讲一节，每节回答三件事——过程是怎么走的、控制变量是什么、到了现场靠什么辨认。看见形态只是第一步，能说出它是被什么过程做出来的，才算读懂。</p>
 </section>
 
 <div class="wrap">
@@ -243,96 +280,70 @@ def body_prins():
 <h2>{len(AGENTS)} 类营力系统</h2>
 {blocks}
 
-<h2>怎么用这套框架读一处淮海地方</h2>
-<p>先定营力：眼前的形态，多半是几种营力接力或叠加的结果，比如废黄河故道等于黄河流水淤积加上人工筑堤，盐城滩涂等于古长江、古黄河供沙加上海洋动力。再找控制变量：把「为什么会这样」翻译成「哪个变量变了」——洪泽湖与骆马湖的差别，追到最后是湖盆究竟由淤塞而来还是由构造而来。然后问年代：形态相似不等于同时形成，同一条郯庐断裂带上，抬升、陷落与发震发生在完全不同的时间尺度上。最后做排除：列出所有能造成相似形态的成因，逐条排除，构造湖还是夺淮湖、采空塌陷还是构造沉降，靠的都是这一步。</p>
-<p>本页的原理表述是通用的地貌学结论；实例数据全部来自各处标注的公开来源，凡无来源的数字一律不写。原理与实例之间不是一一对应关系：一类营力可以解释多处地点，一处地点也常常需要几类营力合起来解释。</p>
+<h2>怎么用这套框架读一处地方</h2>
+<p>先定营力。眼前的形态多半是几种营力接力或叠加的结果：废黄河故道等于黄河流水淤积加上人工筑堤，盐城滩涂等于古长江、古黄河供沙加上海洋动力，潘安湖等于采煤塌陷加上治理复垦。先认出参与者，再谈过程。</p>
+<p>再找控制变量。把「为什么会这样」翻译成「哪个变量变了」——洪泽湖与骆马湖的差别，追到最后是湖盆究竟由淤塞而来还是由构造而来；同为灰岩，皖北被削成孤丘、鲁南被削成崮，差别在岩层产状与抬升幅度。变量定了，解释就有了方向。</p>
+<p>然后问时间。形态相似不等于同时形成：同一条郯庐断裂带上，抬升、陷落与发震发生在完全不同的时间尺度上；一片滩涂的推进与一道故堤的淤高，也不是同一个速率量级的事。量级对了，结论才不会离谱。</p>
+<p>最后做排除。列出所有能造成相似形态的成因，逐条排除：构造湖还是夺淮湖，采空塌陷还是构造沉降，海蚀残留还是人工削坡。到这一步，剩下的就是可以带到现场去检验的假设。</p>
+<p>本页的原理表述是通用的地貌学结论；实例部分的观察点与判断依据逐条写在各自页面里，方便到现场对照。原理与实例之间不是一一对应关系：一类营力可以解释多处地点，一处地点也常常需要几类营力合起来解释。</p>
 </div>
 '''
 
 
 # ─────────────────────────────────────────── 实例
 
-# 现场观察段的开篇导语：按营力分别措辞，避免 16 个实例用同一句话开头
-OBS_LEAD = {
-    'fluvial': '河流留下的痕迹，先看地面高低，再看土质的粗细与分选，然后找人工改造的部分。',
-    'lacustrine': '湖泊现场，重点看「水与岸」的关系：水面比岸外高还是低，岸线是自然的还是人工的。',
-    'coastal': '海岸现场，看潮汐留下的分带，以及岸线正在向哪个方向推进。',
-    'aeolian': '风沙现场，先看颗粒粗细，再看植被与防护工程，最后判断沙的来路。',
-    'karst': '岩溶现场，看岩性、溶蚀痕迹，以及残丘与周围平原之间的高差。',
-    'slope': '重力地貌现场，看陡崖、裂隙与堆积体，重点在它们的接触关系与规模。',
-    'tectonic': '构造现场，找直线状的地形痕迹，以及地层被错开的位置。',
-    'mesa': '方山现场，看「顶平、身陡、麓缓」这套三段式是否齐备，再看岩层产状。',
-    'anthropogenic': '人为地貌现场，看地形与工程、矿井位置的对应关系，再看治理留下的痕迹。',
-}
-
-
-def coord_clause(coord):
-    """coord 字段有时是经纬度、有时是尺度数据，按内容决定怎么起句，避免出现「坐标总面积…」。"""
-    txt = E(coord)
-    if '°' in coord:
-        sep = '' if coord.rstrip().endswith(('。', '；')) else '。'
-        return f'坐标{txt}{sep}'
-    if coord.rstrip().endswith(('。', '；')):
-        return txt
-    return f'{txt}。'
-
-
 def case_inner(c):
     a = AGENT_D[c['agent']]
     name = E(c['name'])
 
-    obs = E(OBS_LEAD.get(c['agent'], '到了现场，以下几处值得逐一对照。')) + ''.join(E(x) for x in c['observe'])
-    mech = f'{E(a[4])}落到这一处，机制是这样的：' + ''.join(E(x) for x in c['mech'])
-    mean = ''.join(f'{E(k)}，{E(v)}。' for k, v in c['meaning'])
-    facts = ''.join(f'{E(k)}，{E(v)}——{E(n)}。' for k, v, n in c['facts'])
+    spots = ''
+    for s in c['spots']:
+        spots += (f'<h3>{E(s["at"])}</h3>\n'
+                  f'<p>{E(s["go"])}</p>\n'
+                  f'<p>{E(s["see"])}</p>\n')
+
+    why = f'<p>{E(a["oneline"])}。落到这一处，过程是这样一步步走下来的：</p>\n'
+    why += ''.join(f'<p>{E(x)}</p>\n' for x in c['why'])
+    why += (f'<p>把这一段过程和眼前的形态对着看，就能明白为什么它长成这样：'
+            f'物质与条件决定了它能变成什么，过程决定了它现在是什么样子，时间决定了它走到哪一步。</p>\n')
+
     srcs = '；'.join(f'<a href="{E(u)}" target="_blank" rel="noopener">{E(t)}</a>'
                     for t, u in c['sources'])
     rel = '、'.join(f'<a href="#c/{s}">{E(short(next(x for x in CASES if x["slug"] == s)))}</a>'
                     for s in c['related'])
-    nsrc = len(c['sources'])
-    nfact = len(c['facts'])
 
     sec = []
-    sec.append(f'<p class="kicker">{E(c["region"])} · {E(a[1])} <span class="en">{E(AGENT_EN.get(c["agent"], ""))}</span> · {E(name)}</p>')
+    sec.append(f'<p class="kicker">{E(c["region"])} · {E(a["name"])} <span class="en">{E(AGENT_EN.get(c["agent"], ""))}</span> · {E(name)}</p>')
     sec.append(f'<h1>{name}</h1>')
     en = EN.get(c['slug'])
     if en:
         sec.append(f'<p class="en">{E(en)}</p>')
     sec.append(f'<p class="lead">{E(c["sub"])}</p>')
-    sec.append(f'<p>{name}地处{E(c["place"])}。{coord_clause(c["coord"])}在淮海四片里属{E(c["region"])}，塑造它的营力是{E(a[1])}。它的现状是：{E(c["status"])}。到现场去，{E(c["access"])}</p>')
-    sec.append(f'<p>{E(c["summary"])}</p>')
+    sec.append(f'<p>{name}在{E(c["place"])}。塑造它的营力是{E(a["name"])}——{E(a["oneline"])}。'
+               f'{E(c["intro"])}</p>')
 
     sec.append('<h2>到哪看，看什么</h2>')
-    sec.append(f'<p>{obs}</p>')
+    sec.append('<p class="plain">下面按点位排开。每一处先写怎么到、在哪儿站定、什么时间或条件去最合适，接着写真到了那里该看什么、拿什么当凭据。点位之间的顺序就是一条顺路的走法。</p>')
+    sec.append(spots)
 
     sec.append('<h2>背后的原理</h2>')
-    sec.append(f'<p>{mech}</p>')
+    sec.append(why)
 
-    if c['meaning']:
-        sec.append('<h2>这些数字在说什么</h2>')
-        sec.append(f'<p>{mean}</p>')
-
-    if c['facts']:
-        sec.append('<h2>实测数据</h2>')
-        sec.append(f'<p>{facts}</p>')
-
-    if c['dispute']:
-        sec.append('<h2>争议与口径</h2>')
-        sec.append(f'<p>{E(c["dispute"])}</p>')
+    sec.append('<h2>现场怎么确认</h2>')
+    sec.append(f'<p>{E(c["read"])}</p>')
 
     sec.append('<h2>来源</h2>')
-    sec.append(f'<p class="ref">本页数据出自 {nsrc} 条公开来源：{srcs}。</p>')
+    sec.append(f'<p class="ref">这一页的观察点与判断依据对照了下列公开资料：{srcs}。</p>')
     sec.append(f'<p class="ref">相邻的实例还有{rel}，点顶排短名卡片即可切过去看。</p>')
-    sec.append(f'<p class="plain">以上观察点与数字均取自公开来源，未做现场复核；实地情况会随季节、水位与工程进展变化，出发前请再核对一次。本页共 {nfact} 组实测数据，全部标注来源。</p>')
+    sec.append('<p class="plain">以上点位与判断依据是据公开资料整理的现场观察笔记，未做逐点实测；季节、水位与工程进度都会改变同一处景观的面貌，出发前请再核对一次当日的通行与开放情况。</p>')
 
     return '\n'.join(sec)
 
 
 def body_cases():
-    cases = ''.join(
+    return ''.join(
         f'<div class="casebody wrap" id="case-{c["slug"]}">{case_inner(c)}</div>'
         for c in CASES)
-    return cases
 
 
 # ─────────────────────────────────────────── 野外判定
@@ -347,29 +358,12 @@ def body_field():
         conf += (f'<h3>{E(name)}</h3>\n'
                  f'<p>先说{E(a1)}。{E(two[0])}。{lead2}。{E(two[1])}。{E(tip)}</p>\n')
 
-    order = [
-        ('远看形态', '先看整体轮廓、规模，以及它与周边地形的关系，定下等级：这是大地貌还是小地貌。'),
-        ('近看物质', '看粒度、分选、磨圆、层理与胶结程度。堆积物的「手感」往往比形态更可靠。'),
-        ('找接触关系', '与下伏、上覆地层是整合还是不整合，是谁切割谁。这是几乎免费的定年信息。'),
-        ('量方向', '砾石长轴定向、斜层理倾向、擦痕方向、断裂走向，方向里藏着古水流与古应力。'),
-        ('记空间组合', '孤立的形态多半多解，成组出现才有诊断意义——陡崖、平顶加缓麓三者齐备，才谈得上方山组合。'),
-        ('最后问年代', '能测年就测年，不能测年就用相对年代，比如阶地级序、风化程度、覆盖关系。'),
-    ]
-    od = ''.join(f'<b>{E(t)}</b>，{E(d)}' for t, d in order)
-
-    tools = (
-        '罗盘加测距，解决产状、方向与厚度的问题，本站实例里用来量崮的岩层产状（小于 10° 是成崮的前提）与断裂走向；'
-        '卷尺与标尺，解决粒度、层厚与位移量，用来量裂谷的宽深、故堤的高差与沙丘的高度；'
-        'GPS 或手机定位，解决点位与高程的记录，比如皇藏洞、麦坡遗址这类需要写清坐标的剖面；'
-        '遥感影像加地形图，解决区域格局与变化速率，盐城滩涂的成陆、南四湖面积的淤缩、采空塌陷的范围都靠它；'
-        '定点重复拍照，解决变化速率，云台山危岩、塌陷地治理、故道湿地的变化都属这一类；'
-        '年代学与史料，解决定年与对比，1668 年郯城地震的史料、1855 年铜瓦厢改道、历代治河档案都在这个位置上。'
-    )
+    od = ''.join(f'<p><b>{E(t)}</b>，{E(d)}</p>' for t, d in FIELD_ORDER)
 
     return f'''
 <section class="hero wrap">
 <h1>野外判定：怎么认，怎么防认错</h1>
-<p class="lead">这是一份可以直接带到现场的判定手册：{len(CONFUSIONS)} 组淮海地区高发的易混淆对照，加一份通用的观察顺序。核心原则只有一句——形态相似的成因未必相同，孤立的证据不足以定案。</p>
+<p class="lead">这是一份可以直接带到现场的判定手册：{len(CONFUSIONS)} 组淮海高发的易混淆对照，加一套通用的观察顺序。核心原则只有一句——形态相似的成因未必相同，孤立的证据不足以定案。</p>
 </section>
 
 <div class="wrap">
@@ -377,14 +371,14 @@ def body_field():
 {conf}
 
 <h2>通用观察顺序</h2>
-<p>{od}</p>
-<p>这六步的顺序不是随意的：先形态、后物质，是因为形态容易被第一印象带偏；把年代放在最后，是因为前面五步收集到的信息本身就是定年的材料。反过来做，最常见的后果是先入为主——看到高出地面的河床就断定是悬河故道，看到水洼就断定是构造湖。</p>
+{od}
+<p>这六步的顺序不是随意的。先形态、后物质，是因为形态容易被第一印象带偏；把年代放在最后，是因为前面五步收集到的信息本身就是定年的材料。反过来做，最常见的后果是先入为主——看到高出地面的河床就断定是悬河故道，看到水洼就断定是构造湖。</p>
 
 <h2>测量与记录的最小工具集</h2>
-<p>{tools}</p>
+<p>{E(FIELD_TOOLS)}</p>
 
 <h2>这套方法的边界</h2>
-<p>方法页的价值不在于记住这些条目，而在于养成一个习惯：看到形态，先想它还能怎么形成。这才是从「认得」走到「判得准」的分界线。同时也要承认，判定需要相应条件——没有测年手段时，很多结论只能停在相对先后；没有区域资料时，孤立一点的观察很容易被局部现象误导。本站的实例都标出了数据来源，凡有争议的都并列双方口径，正是出于这个理由。</p>
+<p>{E(FIELD_BOUND)}</p>
 </div>
 '''
 
@@ -392,7 +386,6 @@ def body_field():
 # ─────────────────────────────────────────── 时间轴
 
 def body_time():
-    # 每个锚点后接一句短评：按营力分组、组内按出现次序轮换措辞，避免同一句式反复出现
     PH = {
         'mesa': ['崮与方山的物质基础，就此埋下'],
         'karst': ['这一次抬升，决定了后来残丘能站多高'],
@@ -404,8 +397,8 @@ def body_time():
                        '湖水的出路，从此改由人来定',
                        '湖被水坝切成两级，水位改由闸门调度'],
         'tectonic': ['构造带的一次活动，同时改了山体与湖盆'],
-        'coastal': ['入海口再挪一次位置',
-                    '这片海岸从「资源」变成了「遗产」'],
+        'coastal': ['入海口的位置，再挪一次',
+                    '这片海岸从资源变成了遗产'],
         'anthropogenic': ['人为营力正式介入地表形态'],
     }
     seen = {}
@@ -420,19 +413,20 @@ def body_time():
             seen[aid] = i + 1
         items += f'<p><b>{E(when)}</b>，{E(what)}——{E(desc)}。{E(phrase)}。</p>\n'
 
+    note = ''.join(f'<p>{E(x)}</p>\n' for x in TIMELINE_NOTE)
+
     return f'''
 <section class="hero wrap">
 <h1>时间轴：淮海的地貌是怎么被一步步改写的</h1>
-<p class="lead">淮海今天的模样，是几件事叠加出来的结果：燕山期的构造抬升给出了山与残丘，黄河的南徙与北归改写了水系，郯庐断裂带的地震重塑了山体，近现代的人类又用采矿与治水直接改动了地表。下面这条时间轴把这 {len(TIMELINE)} 个锚点串起来，每一个都能在实地找到落点。</p>
+<p class="lead">淮海今天的模样是几件事叠出来的：古老岩层就位与构造抬升给出山与残丘，黄河的南徙与北归改写水系，断裂带的强震重塑山体，近现代的人又用采矿与治水直接改动地表。下面这 {len(TIMELINE)} 个锚点串起这条线，每一个都能在实地找到落点。</p>
 </section>
 
 <div class="wrap">
 <h2>{len(TIMELINE)} 个时间锚点</h2>
 {items}
 
-<h2>年代口径的处理</h2>
-<p>年代的口径常有差异，读起来要留意它究竟指什么。岱崮「开始形成」就有 6700 万年前与 177 万年前两种说法，前者指构造背景形成的时间，后者指崮形被削出来的时间，说的其实不是同一件事；郯城地震的震源深度也有 15、23、36 公里等不同的反演结果，这是震源参数反演本身的正常分歧。凡遇此类情形，本站一律并列呈现而不取单值，也不代为换算。</p>
-<p>另需说明，时间轴上的次序只表示先后关系，不表示等间隔。构造运动以百万年计，水系改道以百年计，工程活动以十年计，把它们放在同一条线上，尺度差距是被压缩过的。</p>
+<h2>怎么读这条时间轴</h2>
+{note}
 </div>
 '''
 
@@ -444,13 +438,13 @@ def body_srcs():
     for c in CASES:
         srcs = '；'.join(f'<a href="{E(u)}" target="_blank" rel="noopener">{E(t)}</a>' for t, u in c['sources'])
         blocks += (f'<h3><a href="#c/{c["slug"]}">{E(c["name"])}</a>　{E(c["region"])}　{E(c["place"])}</h3>\n'
-                   f'<p class="ref">{len(c["sources"])} 条：{srcs}。</p>\n')
+                   f'<p class="ref">{srcs}。</p>\n')
 
     nsrc = sum(len(c['sources']) for c in CASES)
     return f'''
 <section class="hero wrap">
 <h1>来源清单</h1>
-<p class="lead">本站所有实测数字都出自下列公开来源，共 {nsrc} 条，按实例排列。采集方式是按营力类别逐类联网检索，优先采用期刊论文、政府部门、景区官方与主流媒体的实测数据；同一指标出现多个数值时并列呈现，不做加权也不做换算。</p>
+<p class="lead">本手册各页的位置、现象与判断依据对照了下列公开资料，共 {nsrc} 条，按实例排列。采集方式是按营力类别逐类检索，优先采用政府部门、景区官方、专业机构与主流媒体的公开材料。</p>
 </section>
 
 <div class="wrap">
@@ -458,8 +452,9 @@ def body_srcs():
 {blocks}
 
 <h2>使用边界</h2>
-<p>本站的营力框架是通用地貌学的归纳，实例与数据全部来自上列公开来源；同一指标的多个口径并列呈现，不作换算，也不代人取舍。学术争议只列双方论据与出处，本站不作裁决。</p>
-<p>最后一点提醒：这些来源多为机构发布或媒体报道，其中的数字经二次转述，与原始论文口径可能有出入；本站只保证「在此处如此陈述」，不代人判断其权威程度。需要引用于正式场合时，请回到原始文献核对。</p>
+<p>手册里的营力框架是通用地貌学的归纳，观察点与判断依据来自上列公开资料与野外常识，不替代你自己的现场核对。同一处地点在不同季节、不同水位与不同工程进度下，可见的现象会不一样；点位之间的通行条件也会变化。</p>
+<p>另需说明，这些来源多为机构发布或媒体报道，内容经二次转述；本手册只保证「在此处如此表述」，不代人判断其权威程度。需要引用于正式场合时，请回到原始文献核对。</p>
+<p>最后一句提醒：写这份手册的目的是让你到了现场知道往哪儿站、往哪儿看、看到的东西意味着什么。凡是与现场不符的地方，以现场为准。</p>
 </div>
 '''
 
@@ -469,12 +464,10 @@ def main():
     # 改为「就地覆盖 + 只清掉本次不再产出的多余文件」。
     body = ''.join(
         f'<section class="view" id="v-{k}">{b}</section>'
-        for k, b in [('cases', body_cases()), ('prins', body_prins()),
-                     ('field', body_field()), ('time', body_time()),
-                     ('srcs', body_srcs())])
+        for k, b in [('home', body_home()), ('prins', body_prins()), ('cases', body_cases()),
+                     ('field', body_field()), ('time', body_time()), ('srcs', body_srcs())])
     pages = {'index.html': shell(body)}
 
-    # 清理旧产物中不在本次清单内的文件（逐个删除，失败不影响构建）
     stale = []
     for dp, dn, fn in os.walk(OUT):
         for f in fn:

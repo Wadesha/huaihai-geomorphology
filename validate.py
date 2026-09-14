@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-"""站点自检：标签闭合 + 内链 + 「纯散文正文」约束 + 交互结构 + 关键内容抽查。
-结果写入 _validate.txt（适配单页标签式结构：docs/ 下只有 index.html）
+"""站点自检：标签闭合 + 内链 + 纯散文约束 + 交互结构 + 去数据化检查。
+结果写入 _validate.txt（docs/ 下只有 index.html 一个页面）
 """
-import os, re, glob
+import os, re, glob, html
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DOCS = os.path.join(ROOT, 'docs')
@@ -58,7 +58,7 @@ out.append('structured-display hits (should be 0): %d' % struct)
 EMOJI = re.compile(
     '[\U0001F000-\U0001FAFF\U00002600-\U000027BF\U00002B00-\U00002BFF'
     '\U0001F1E6-\U0001F1FF\U00002190-\U000021FF\U0000FE0F\U00002700-\U000027BF'
-    '\U000025A0-\U000025FF\U00002190\u2192\u2190\u2191\u2193]')
+    '\U000025A0-\U000025FF\u2192\u2190\u2191\u2193]')
 hards = {'img': 0, 'table': 0, 'emoji': 0, 'search': 0, 'md': 0}
 for f in files:
     t = open(f, encoding='utf-8').read()
@@ -90,9 +90,9 @@ out.append('hard-ban hits img=%d table=%d emoji=%d search=%d md-bold=%d (all sho
 
 # ── 标签式交互结构
 idx = open(os.path.join(DOCS, 'index.html'), encoding='utf-8').read()
-out.append('module cards: %d (should be 5)' % idx.count('data-v="'))
+out.append('module cards: %d (should be 6)' % idx.count('data-v="'))
 out.append('case cards: %d (should be 26)' % idx.count('data-c="'))
-out.append('views: %d (should be 5)' % idx.count('<section class="view"'))
+out.append('views: %d (should be 6)' % idx.count('<section class="view"'))
 out.append('case bodies: %d (should be 26)' % idx.count('<div class="casebody'))
 
 # ── 段落体量：散文是否真的成段
@@ -105,12 +105,33 @@ out.append('paragraphs in main: %d  avg len: %.0f' % (len(ps), avg))
 if avg < 60:
     out.append('WARN thin paragraphs')
 
+# ── 去数据化：实例页正文（点位数、观察描述、原理、判定）不应出现阿拉伯数字
+tot_digit = 0
+for m in re.finditer(r'<div class="casebody[^"]*"[^>]*>(.*?)(?=<div class="casebody|</section>|$)', body, re.S):
+    blk = m.group(1)
+    txt = re.sub(r'<p class="ref">.*?</p>', '', blk, flags=re.S)   # 来源链接与相邻实例不算正文
+    txt = html.unescape(re.sub(r'<[^>]+>', '', txt))
+    txt = re.sub(r'<span class="en">.*?</span>', '', txt)
+    d = re.findall(r'[0-9]', txt)
+    if d:
+        tot_digit += len(d)
+        out.append('CASE-DIGIT %s' % re.sub(r'\s+', ' ', txt[:60]))
+out.append('digits inside case prose (should be 0): %d' % tot_digit)
+
+# ── 旧口径残留
+for kw in ['实测数据', '这些数字在说什么', '争议与口径']:
+    n = idx.count(kw)
+    if n:
+        out.append('LEGACY SECTION %s ×%d' % (kw, n))
+out.append('legacy data sections: %s' % ('0' if not any(
+    k in idx for k in ['实测数据', '这些数字在说什么', '争议与口径']) else 'FOUND'))
+
 # ── 内容抽查
 for kw in ['苏北', '皖北', '鲁南', '豫东', '洪泽湖', '废黄河', '岱崮', '潘安湖',
-           '辐射沙洲', '天沐湖', '芒砀山', '郯城']:
+           '辐射沙洲', '天沐湖', '芒砀山', '郯城', '到哪看', '看什么', '背后的原理']:
     out.append('index contains %s: %s' % (kw, kw in idx))
 
-# hash 内链抽查：所有 #c/<slug> 的 slug 必须真实存在
+# hash 内链抽查
 slugs = set(re.findall(r'data-c="([^"]+)"', idx))
 bad_h = 0
 for h in re.findall(r'href="#c/([^"]+)"', idx):
