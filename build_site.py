@@ -38,6 +38,37 @@ def short(c):
     return SHORT.get(c['slug'], c['name'][:3])
 
 
+# 每处实例的一行英文短注（极少量英文：只出现在实例标题下方与实例模块导语）
+EN = {
+    'hongze-lake': 'Hongze Lake — a "hanging" lake raised by silt and dikes',
+    'feihuanghe': 'The Abandoned Yellow River — a dead river that still divides two drainage systems',
+    'yancheng-tidal': 'Yancheng Coastal Wetlands and the Radial Sand Ridges',
+    'panan-lake': "Pan'an Lake — a coal-subsidence basin turned wetland",
+    'luoma-lake': 'Luoma Lake — a fault-basin lake',
+    'yuntai-mountain': 'Yuntai Mountain — a coastal range once an island in the sea',
+    'qinshan-island': 'Qinshan Island — a tombolo in the making',
+    'liyashan': 'Liya Mountain — an oyster reef rising at low tide',
+    'xinghua-duotian': 'Duotian of Xinghua — raised fields built out of the marsh',
+    'huangcangyu': 'Huangcangyu — limestone hills and caves north of the Huaibei plain',
+    'huaibei-xiangshan': 'Xiangshan, Huaibei — a karst outlier on the plain',
+    'bagongshan': 'Bagong Mountain — limestone hills at the middle Huai',
+    'jingshanxia': 'Jingshan Gorge and Tushan — where the Huai River squeezes between two mountains',
+    'daigu': 'The Dai-Gu — tabletop mountains of Mengyin',
+    'tancheng-fault': 'Tancheng and the Tan-Lu Fault — the great earthquake of 1668',
+    'baodugu-xionger': "Baodugu and Xiong'er Mountain — a gu and its collapsed twin",
+    'lincangcang-plain': 'The Lin-Tan-Cang Plain — alluvium laid down by the Yi and Shu rivers',
+    'weishan-lake': 'The Nansi Lakes — a chain of shallow lakes on a subsiding line',
+    'yishui-cave': 'The Underground Grand Canyon of Yishui — a karst cave river',
+    'guimengding': 'Guimengding — the roof of the Mengshan range',
+    'sishui-quanlin': 'Quanlin Springs — where the Si River is born',
+    'liangshan-paleolake': 'Liangshan and the Paleolake — where an 800-li lake silted away',
+    'lankao-sand': 'Lankao Sand Fields — dunes left on the old floodplain',
+    'shangqiu-gudao': 'The Old Channel at Shangqiu and Tianmu Lake',
+    'mangdangshan': 'Mangdangshan — low karst hills on the plain',
+    'kaifeng-river': 'Kaifeng — the hanging river, and cities buried under cities',
+}
+
+
 def css():
     return """
 *{box-sizing:border-box}
@@ -85,10 +116,13 @@ p{margin:0 0 .55em;text-indent:2em;text-align:justify}
 p.lead,p.kicker,p.plain{text-indent:0}
 p.lead{color:var(--muted);font-size:15px;line-height:1.6;margin-bottom:.7em}
 p.kicker{font-size:12.5px;color:var(--muted);margin-bottom:.25em}
+p.en{font-size:13px;color:var(--muted);font-style:italic;font-family:Georgia,"Times New Roman",serif;text-indent:0;margin:-0.1em 0 .6em;line-height:1.45}
 p.plain{color:var(--muted);font-size:13.5px}
 .small{font-size:13px;color:var(--muted)}
 p.ref{font-size:13px;text-indent:0;color:var(--muted);line-height:1.5;word-break:break-word}
 p.ref a{border-bottom-style:dotted}
+.en-tag{font-size:12px;color:var(--muted);font-style:italic;font-family:Georgia,"Times New Roman",serif;white-space:nowrap}
+@media(max-width:760px){.en-tag{display:none}}
 footer{border-top:1px solid var(--line);margin-top:24px;padding:14px 0 26px;color:var(--muted);font-size:12.5px}
 footer .wrap{max-width:960px}
 footer p{text-indent:0;line-height:1.6}
@@ -151,7 +185,7 @@ def shell(body):
 <meta name="description" content="淮海地貌现场手册：{len(AGENTS)} 类营力原理 + {len(CASES)} 个淮海现存实例 + 野外判定对照。">
 <style>{css()}</style></head><body>
 <nav>
-<div class="topbar"><span class="brand">淮海地貌现场手册</span><span class="spacer"></span>
+<div class="topbar"><span class="brand">淮海地貌现场手册</span><span class="en-tag">A field guide to the landforms of the Huaihai region</span><span class="spacer"></span>
 <button class="tg" onclick="toggleTheme()">明 / 暗</button></div>
 <div class="cards" data-k="mod">{mod_cards}</div>
 <div class="cards sub" data-k="case" id="casebar" style="display:none">{case_cards}</div>
@@ -261,6 +295,9 @@ def case_inner(c):
     sec = []
     sec.append(f'<p class="kicker">{E(c["region"])} · {E(a[1])} <span class="en">{E(AGENT_EN.get(c["agent"], ""))}</span> · {E(name)}</p>')
     sec.append(f'<h1>{name}</h1>')
+    en = EN.get(c['slug'])
+    if en:
+        sec.append(f'<p class="en">{E(en)}</p>')
     sec.append(f'<p class="lead">{E(c["sub"])}</p>')
     sec.append(f'<p>{name}地处{E(c["place"])}。{coord_clause(c["coord"])}在淮海四片里属{E(c["region"])}，塑造它的营力是{E(a[1])}。它的现状是：{E(c["status"])}。到现场去，{E(c["access"])}</p>')
     sec.append(f'<p>{E(c["summary"])}</p>')
